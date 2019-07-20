@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+  <link rel="preconnect" href="https://h.img.alumni.re">
+  <link rel="preload" href="https://h.img.alumni.re/assets/fonts/ONEDAY.woff" crossorigin="anonymous" as="font">
+  <link rel="preload" href="/assets/css/style.css" crossorigin="anonymous" as="style">
+  <link rel="preload" href="https://h.img.alumni.re/assets/lazysizes.min.js" crossorigin="anonymous" as="script">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href='https://her.st/feed.xml' rel='alternate' type='application/atom+xml'>
+  <link rel="manifest" href="/manifest.json" crossorigin="anonymous">
+  <link rel="stylesheet" href="/assets/css/style.css" crossorigin="anonymous">
+  <link rel="icon" type="image/png" href="https://h.img.alumni.re/assets/favicon.png" crossorigin="anonymous" />
+  <meta name="theme-color" content="#FD2186">
+  <meta name="msapplication-TileColor" content="#FD2186">
+  <meta name="msapplication-navbutton-color" content="#FD2186">
+  <meta name="apple-mobile-web-app-status-bar-style" content="#FD2186">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp"><!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>creating an image hosting web service | trrbl dev blog</title>
+<meta name="generator" content="Jekyll v3.8.6" />
+<meta property="og:title" content="creating an image hosting web service" />
+<meta name="author" content="Trrbl" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="this blog needs images. let’s build a service and upload app" />
+<meta property="og:description" content="this blog needs images. let’s build a service and upload app" />
+<link rel="canonical" href="https://her.st//usr/bin/creating-image-hosting-web-service-in-csharp.html" />
+<meta property="og:url" content="https://her.st//usr/bin/creating-image-hosting-web-service-in-csharp.html" />
+<meta property="og:site_name" content="trrbl dev blog" />
+<meta property="og:image" content="https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2019-07-11T00:00:00+02:00" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta property="twitter:image" content="https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp" />
+<meta property="twitter:title" content="creating an image hosting web service" />
+<meta name="twitter:site" content="@" />
+<meta name="twitter:creator" content="@Trrbl" />
+<script type="application/ld+json">
+{"headline":"creating an image hosting web service","dateModified":"2019-07-11T00:00:00+02:00","datePublished":"2019-07-11T00:00:00+02:00","image":"https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp","description":"this blog needs images. let’s build a service and upload app","author":{"@type":"Person","name":"Trrbl"},"mainEntityOfPage":{"@type":"WebPage","@id":"https://her.st//usr/bin/creating-image-hosting-web-service-in-csharp.html"},"@type":"BlogPosting","url":"https://her.st//usr/bin/creating-image-hosting-web-service-in-csharp.html","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+<link type="application/atom+xml" rel="alternate" href="https://her.st//feed.xml" title="trrbl dev blog" /><script src="https://h.img.alumni.re/assets/lazysizes.min.js" crossorigin="anonymous"></script>
+</head><body><div class="site-header">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="/">λ trrbl dev blog [~]
+      <b class="command_prompt"></b><b class="blinking_cursor">_</b></a>
+  </div>
+</div><main class="page-content" aria-label="Content">
+    <div class="wrapper">
+      <img class="lazyload" data-src="https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp" alt="" width="100%" />
+<center>
+  <div class="post-description"><i></i></div>
+</center>
+<div class="post">
+  <h1 class="post-title">creating an image hosting web service</h1>
+  
+  <div class="post-tags">
+    
+    <a class="tag" href="/tag/tutorial/">$tutorial</a>
+    
+    <a class="tag" href="/tag/project/">$project</a>
+    
+    <a class="tag" href="/tag/csharp/">$csharp</a>
+    
+    <a class="tag" href="/tag/net/">$net</a>
+    
+    <a class="tag" href="/tag/core/">$core</a>
+    
+    <a class="tag" href="/tag/netcore/">$netcore</a>
+    
+    <a class="tag" href="/tag/web/">$web</a>
+    
+  </div>
+  
+  <div class="post-date">Published on 11 Jul 2019</div>
+  <h1 id="hello-entity">hello entity,</h1>
+<p>We’ve got work to do.</p>
+
+<h2 id="-needs">$ needs</h2>
+<p>Easy to use service that lets us host images and other static data, allows direct linking and embedding. Any webserver will do. I have a virtual server with apache2, so I’ll use that. Considering that box also runs a FTP server, we shall upload our files using FTP and not bother with HTTP POST/PUT crap.</p>
+
+<p>We also need a command line app that can take an image path as argument, upload it to our service and copies the direct link to it straight into the clipboard. The app should be a command line tool and do nothing without arguments.</p>
+
+<h2 id="-requirements">$ requirements</h2>
+
+<p>A tiny private server should be able to host everything we need.</p>
+
+<ul>
+  <li>Web Server</li>
+  <li>FTP Server</li>
+  <li>SSL</li>
+  <li>UploaderApp</li>
+  <li>Possibly a Browser / Management app in the future</li>
+</ul>
+
+<h2 id="-setting-up-the-webserver">$ setting up the webserver</h2>
+
+<p>First we have to install a webserver. Usually I’d use Nginx, but since I have an apache server already up, I’ll go with that.</p>
+
+<p>I’ll use a custom subdomain for this service.
+<a href="https://h.img.alumni.re/">https://h.img.alumni.re/</a> 
+Here’s a visual representation why I chose this domain in case you are wondering:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">   Server   </th>
+      <th style="text-align: center">   Type   </th>
+      <th style="text-align: center">   Domain   </th>
+      <th style="text-align: center">   TLD   </th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">h</td>
+      <td style="text-align: center">img</td>
+      <td style="text-align: center">alumni</td>
+      <td style="text-align: center">re</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>the <code class="highlighter-rouge">h</code> symbolizes my Homeserver.</p>
+
+<h4 id="install-apache">install apache:</h4>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Updating the repos and installing everything we need</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>apache2
+</code></pre></div></div>
+<p>Apache is installed and ready, you can verify that by going to <a href="http://0.0.0.0/">http://0.0.0.0/</a></p>
+
+<h4 id="setup-vhost">setup VHOST</h4>
+
+<p>Now its time to configure the virtual host. To do that, we have to create a text file in</p>
+
+<p><code class="highlighter-rouge">/etc/apache2/sites-enabled/</code> 
+called 
+<code class="highlighter-rouge">h.img.alumni.re.conf</code> (replace the name with your domain)
+and put some text inside of it.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>nano /etc/apache2/sites-enabled/h.img.alumni.re.conf
+</code></pre></div></div>
+
+<div class="language-zsh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&lt;VirtualHost <span class="k">*</span>:80&gt;
+        <span class="c"># ServerName is supposed to be DOMAIN . TLD</span>
+        ServerName alumni.re
+        <span class="c"># ServerAlias is supposed to be the entire (sub)domain</span>
+        ServerAlias h.img.alumni.re
+        <span class="c"># Document root is where your files will be stored</span>
+        DocumentRoot /var/www/h.img.alumni.re/html
+
+        ErrorLog <span class="k">${</span><span class="nv">APACHE_LOG_DIR</span><span class="k">}</span>/error.log
+        CustomLog <span class="k">${</span><span class="nv">APACHE_LOG_DIR</span><span class="k">}</span>/access.log combined
+
+&lt;/VirtualHost&gt;
+</code></pre></div></div>
+
+<p>And for my final trick, let’s create the directory structure for the webserver.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># We've set this path above as DocumentRoot</span>
+<span class="o">&gt;</span> <span class="nb">mkdir</span> /var/www/h.img.alumni.re
+<span class="o">&gt;</span> <span class="nb">mkdir</span> /var/www/h.img.alumni.re/html
+<span class="o">&gt;</span> <span class="nb">mkdir</span> /var/www/h.img.alumni.re/html/img
+</code></pre></div></div>
+
+<p>After setting the DNS records of your subdomain at your provider, your site should be ready, you can verify that by going to it in a browser: <a href="http://h.img.alumni.re/">http://h.img.alumni.re/</a></p>
+
+<h2 id="-setting-up-certbot-for-free-ssl">$ setting up Certbot for free SSL</h2>
+
+<p>Pretty important to set up SSL nowdays as every browser will freak the fuck out if your images come from an ‘insecure source’ - basically over <code class="highlighter-rouge">http</code> instead of <code class="highlighter-rouge">https</code> … There’s no real benefit in encrypting static files, but if it makes the browsers happy..</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># Updating the repos and installing everything we need</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>apt update <span class="o">&amp;&amp;</span> <span class="nb">sudo </span>apt <span class="nb">install </span>apache2 certbot python-certbot-apache
+<span class="c"># let it do it's magic</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>certbot <span class="nt">--apache</span>
+</code></pre></div></div>
+
+<p>When you’re asked how you want to enable SSL, chose “redirect”, wait for certbot to finish writing new configs and pulling the certs, then run</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>certbot renew <span class="nt">--dry-run</span>
+</code></pre></div></div>
+
+<p>If that command fails, check <a href="https://certbot.eff.org/help/">Certbot Help</a> otherwise, let’s automate the renewal process by adding</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 1 * * * /usr/bin/certbot renew &amp; &gt; /dev/null
+</code></pre></div></div>
+
+<p>to your crontab (<code class="highlighter-rouge">&gt; crontab -e</code>) - and dont forget the new line at the end or it will complain..</p>
+
+<h2 id="-setup-ftp">$ setup FTP</h2>
+
+<p>I regret using FTP for this already, but let’s get it installed and setup. In theory, you could skip this step and use http uploads, but I rather have something isolated from the webserver, as I plan on writing my own webserver for static content later, and I probably won’t impement anything but GET. Enough rambling, let’s punch in some commands to install it and enable it on boot.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>apt-get <span class="nb">install </span>vsftpd <span class="nt">-y</span>
+<span class="o">&gt;</span> <span class="nb">sudo </span>systemctl <span class="nb">enable </span>vsftpd
+</code></pre></div></div>
+
+<p>Now let’s add our FTP user</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#ftp boi gonna live in the webroot (and get jailed into it)</span>
+<span class="o">&gt;</span> useradd ftp <span class="nt">-m</span> <span class="nt">-d</span> /var/www/h.img.alumni.re/html
+<span class="o">&gt;</span> <span class="nb">sudo </span>passwd ftp
+</code></pre></div></div>
+
+<p>Now we have to make sure our server is setup properly. We will need to configure write permissions, ports, directories and authentication. I’ve attached my configuration file which should work for you too.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">cat</span> /etc/vsftpd.conf 
+<span class="nv">listen_ipv6</span><span class="o">=</span>YES
+<span class="nv">anonymous_enable</span><span class="o">=</span>NO
+<span class="nv">anon_upload_enable</span><span class="o">=</span>NO
+<span class="nv">local_enable</span><span class="o">=</span>YES
+<span class="nv">write_enable</span><span class="o">=</span>YES
+<span class="nv">dirmessage_enable</span><span class="o">=</span>YES
+<span class="nv">use_localtime</span><span class="o">=</span>YES
+<span class="nv">xferlog_enable</span><span class="o">=</span>YES
+<span class="nv">connect_from_port_20</span><span class="o">=</span>NO
+<span class="nv">secure_chroot_dir</span><span class="o">=</span>/var/run/vsftpd/empty
+<span class="nv">pam_service_name</span><span class="o">=</span>ftp
+<span class="nv">rsa_cert_file</span><span class="o">=</span>/etc/letsencrypt/live/h.img.alumni.re/cert.pem
+<span class="nv">rsa_private_key_file</span><span class="o">=</span>/etc/letsencrypt/live/h.img.alumni.re/privkey.pem
+<span class="nv">ssl_enable</span><span class="o">=</span>YES
+<span class="nv">require_ssl_reuse</span><span class="o">=</span>NO
+<span class="nv">pasv_enable</span><span class="o">=</span>YES
+<span class="nv">pasv_min_port</span><span class="o">=</span>1024
+<span class="nv">pasv_max_port</span><span class="o">=</span>1025
+<span class="nv">allow_writeable_chroot</span><span class="o">=</span>YES
+<span class="nv">chroot_local_user</span><span class="o">=</span>YES
+<span class="nv">chroot_list_enable</span><span class="o">=</span>YES
+<span class="nv">chroot_list_file</span><span class="o">=</span>/etc/vsftpd.chroot_list
+<span class="nv">file_open_mode</span><span class="o">=</span>0777
+<span class="nv">local_umask</span><span class="o">=</span>022
+
+</code></pre></div></div>
+<p><code class="highlighter-rouge">/etc/vsftpd.chroot_list</code> is an empty file. Just run</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo touch</span> /etc/vsftpd.chroot_list
+</code></pre></div></div>
+<p>to create it, also notice I’m re-using our SSL cert we got for our webserver earlier. I’ve taken the default path here, so when certbot renews it, vsftpd will always use the newest one.</p>
+
+<p>Now let’s start the ftp server.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>systemctl start vsftpd
+</code></pre></div></div>
+
+<h3 id="bonus-step-disallow-ssh-for-ftp-user">bonus step: disallow ssh for ftp user</h3>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>nano /etc/ssh/sshd_config
+</code></pre></div></div>
+<p>Add/edit the following line</p>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>DenyUsers ftp <span class="c"># ftp is my user</span>
+</code></pre></div></div>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;</span> <span class="nb">sudo </span>systemctl restart vsftpd
+</code></pre></div></div>
+
+<h2 id="-bringing-it-all-together-with-our-c-netcore-app">$ bringing it all together with our c# netcore app</h2>
+
+<h4 id="review">review</h4>
+
+<p>Let’s quickly review what we got setup so far so we can start thinking about how we are going to implement that in code..</p>
+
+<ul>
+  <li>Webserver w/ ssl &amp; domain</li>
+  <li>FTP Server w/ ssl &amp; domain</li>
+  <li>FTP User w/ r+w access to domain’s root folder</li>
+</ul>
+
+<p>and here’s what we still need</p>
+
+<ul>
+  <li>App that let’s me upload images quickly.</li>
+</ul>
+
+<h2 id="c">c#</h2>
+
+<p>Let’s start with the FTP Upload first. That should be the most difficult part here. Thankfully, the .net framework already has pre-made classes to deal with FTP, namely  <code class="highlighter-rouge">FtpWebRequest</code>. So let’s design our first class, the one responsible for uploading images…</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Uploader</span>
+<span class="p">{</span>
+    <span class="c1">// First we will set our root address for the following requests</span>
+    <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">FTP_IMG_ROOT</span> <span class="p">=</span> <span class="s">"ftp://h.img.alumni.re/images/"</span><span class="p">;</span>
+    <span class="c1">// Next we set our Id file's public HTTP url, we will download this and parse it to set the current Id.</span>
+    <span class="k">private</span> <span class="k">const</span> <span class="kt">string</span> <span class="n">HTTP_IMG_ID_FILE</span> <span class="p">=</span> <span class="s">"https://h.img.alumni.re/images/Id.txt"</span><span class="p">;</span>
+    <span class="c1">// We use the curId as something like a counter, so we don't overwrite old files. I decided to do this on the client since *I'm* the only client.</span>
+    <span class="c1">// Don't be an idiot.</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">nextId</span><span class="p">;</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="kt">int</span> <span class="n">curId</span><span class="p">;</span>
+
+    <span class="c1">// Since this is a static class and its initialized only if arguments are passed, its ok to block in the constructor.</span>
+    <span class="c1">// Don't do this is bigger applications. </span>
+    <span class="k">static</span> <span class="nf">Uploader</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="c1">// as stated above, here we download and parse the Id file so we know what the last Id on the server is</span>
+        <span class="c1">// (it gets worse)</span>
+        <span class="k">using</span> <span class="p">(</span><span class="n">WebClient</span> <span class="n">client</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">WebClient</span><span class="p">())</span>
+            <span class="n">client</span><span class="p">.</span><span class="nf">DownloadFile</span><span class="p">(</span><span class="n">HTTP_IMG_ID_FILE</span><span class="p">,</span> <span class="s">"Id.txt"</span><span class="p">);</span>
+
+        <span class="k">if</span> <span class="p">(</span><span class="n">File</span><span class="p">.</span><span class="nf">Exists</span><span class="p">(</span><span class="s">"Id.txt"</span><span class="p">)</span> <span class="p">&amp;&amp;</span> <span class="kt">int</span><span class="p">.</span><span class="nf">TryParse</span><span class="p">(</span><span class="n">File</span><span class="p">.</span><span class="nf">ReadAllText</span><span class="p">(</span><span class="s">"Id.txt"</span><span class="p">),</span> <span class="k">out</span> <span class="n">curId</span><span class="p">))</span>
+            <span class="n">nextId</span> <span class="p">=</span> <span class="n">curId</span> <span class="p">+</span> <span class="m">1</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// Saves a couple of lines of code :D</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="n">FtpWebRequest</span> <span class="nf">CreateUploadRequest</span><span class="p">(</span><span class="kt">string</span> <span class="n">file</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="p">(</span><span class="n">FtpWebRequest</span><span class="p">)</span><span class="n">WebRequest</span><span class="p">.</span><span class="nf">Create</span><span class="p">(</span><span class="n">FTP_IMG_ROOT</span> <span class="p">+</span> <span class="s">$"</span><span class="p">{</span><span class="n">file</span><span class="p">}</span><span class="s">"</span><span class="p">);</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">Credentials</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">NetworkCredential</span><span class="p">(</span><span class="s">"ftp"</span><span class="p">,</span> <span class="s">"root"</span><span class="p">);</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">EnableSsl</span> <span class="p">=</span> <span class="k">true</span><span class="p">;</span> <span class="c1">// this is the reason we can't use WebClient. It won't work with ssl.</span>
+        <span class="n">request</span><span class="p">.</span><span class="n">Method</span> <span class="p">=</span> <span class="n">WebRequestMethods</span><span class="p">.</span><span class="n">Ftp</span><span class="p">.</span><span class="n">UploadFile</span><span class="p">;</span>
+         <span class="k">return</span> <span class="n">request</span><span class="p">;</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// not sure why i ended up using tasks... i bet they just slow everything down tbh..</span>
+    <span class="c1">// you test that and email me the results. blog@her.st ;D</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;</span> <span class="nf">UploadAsync</span><span class="p">(</span><span class="kt">string</span> <span class="n">path</span><span class="p">)</span>
+    <span class="p">{</span>
+        <span class="c1">// further attemt at creating a more unique path but still giving it some readability.</span>
+        <span class="c1">// this would turn File.txt into File_3948.txt</span>
+        <span class="c1">// I don't even check if a file with the same name exists and just assume so.</span>
+        <span class="c1">// Asking the server for a file list, looking for it and THEN starting to upload</span>
+        <span class="c1">// takse too much time. This is single user anyways, I won't run 20 instances of this shit.</span>
+        <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="nf">CreateUploadRequest</span><span class="p">(</span><span class="n">Path</span><span class="p">.</span><span class="nf">GetFileNameWithoutExtension</span><span class="p">(</span><span class="n">path</span><span class="p">)</span> <span class="p">+</span> <span class="s">"_"</span> <span class="p">+</span> <span class="n">curId</span> <span class="p">+</span> <span class="n">Path</span><span class="p">.</span><span class="nf">GetExtension</span><span class="p">(</span><span class="n">path</span><span class="p">));</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">fileStream</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="nf">OpenRead</span><span class="p">(</span><span class="n">path</span><span class="p">))</span> <span class="c1">// doing streams like a good boi in case file is biiig</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ftpStream</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetRequestStream</span><span class="p">())</span>
+            <span class="k">await</span> <span class="n">fileStream</span><span class="p">.</span><span class="nf">CopyToAsync</span><span class="p">(</span><span class="n">ftpStream</span><span class="p">);</span> <span class="c1">// but in the end I take the lazy route.</span>
+        <span class="k">await</span> <span class="nf">UpdateId</span><span class="p">();</span> <span class="c1">// Told you it'd get worse.</span>
+        <span class="k">return</span> <span class="n">request</span><span class="p">.</span><span class="n">RequestUri</span><span class="p">.</span><span class="n">AbsoluteUri</span><span class="p">.</span><span class="nf">Replace</span><span class="p">(</span><span class="s">"ftp"</span><span class="p">,</span> <span class="s">"https"</span><span class="p">);</span>
+    <span class="p">}</span>
+    
+    <span class="c1">// did you think the server would keep track of the counter? </span>
+    <span class="k">private</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">UpdateId</span><span class="p">()</span>
+    <span class="p">{</span>
+        <span class="n">Interlocked</span><span class="p">.</span><span class="nf">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">curId</span><span class="p">);</span> <span class="c1">// atomicly incrementing our counters because by now i have no idea where our methods execute</span>
+        <span class="n">Interlocked</span><span class="p">.</span><span class="nf">Increment</span><span class="p">(</span><span class="k">ref</span> <span class="n">nextId</span><span class="p">);</span> <span class="c1">// doing this seems to calm me down, no idea if its snakeoil</span>
+        <span class="k">await</span> <span class="n">File</span><span class="p">.</span><span class="nf">WriteAllTextAsync</span><span class="p">(</span><span class="s">"Id.txt"</span><span class="p">,</span> <span class="s">$"</span><span class="p">{</span><span class="n">curId</span><span class="p">}</span><span class="s">"</span><span class="p">);</span> <span class="c1">// we write it so we can read it ...</span>
+        <span class="kt">var</span> <span class="n">request</span> <span class="p">=</span> <span class="nf">CreateUploadRequest</span><span class="p">(</span><span class="s">"Id.txt"</span><span class="p">);</span> <span class="c1">// another request</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">fileStream</span> <span class="p">=</span> <span class="n">File</span><span class="p">.</span><span class="nf">OpenRead</span><span class="p">(</span><span class="s">"Id.txt"</span><span class="p">))</span> <span class="c1">// this is a file with a fucking number in it. Number might get big, lets use a stream XDDDDDDD</span>
+        <span class="k">using</span> <span class="p">(</span><span class="kt">var</span> <span class="n">ftpStream</span> <span class="p">=</span> <span class="n">request</span><span class="p">.</span><span class="nf">GetRequestStream</span><span class="p">())</span>
+            <span class="k">await</span> <span class="n">fileStream</span><span class="p">.</span><span class="nf">CopyToAsync</span><span class="p">(</span><span class="n">ftpStream</span><span class="p">);</span> <span class="c1">// another lazy way out</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Couple of lines of code, nothing too fancy, kept it simple for the most part. I wish I went with HTTP uploads instead, having to deal with the FtpWebRequest directly made this class way bigger than it needed to be. Let’s make our <code class="highlighter-rouge">Main()</code> smaller :D</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="k">async</span> <span class="n">Task</span> <span class="nf">Main</span><span class="p">(</span><span class="kt">string</span><span class="p">[]</span> <span class="n">args</span><span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">args</span><span class="p">.</span><span class="n">Length</span> <span class="p">==</span> <span class="m">0</span><span class="p">)</span> <span class="c1">// no args? no bueno.</span>
+        <span class="k">return</span><span class="p">;</span><span class="c1">// seppuku</span>
+    <span class="kt">var</span> <span class="n">builder</span> <span class="p">=</span> <span class="k">new</span> <span class="nf">StringBuilder</span><span class="p">();</span>
+    <span class="k">for</span> <span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="p">=</span> <span class="m">0</span><span class="p">;</span> <span class="n">i</span> <span class="p">&lt;</span> <span class="n">args</span><span class="p">.</span><span class="n">Length</span><span class="p">;</span> <span class="n">i</span><span class="p">++)</span>
+    <span class="p">{</span>
+      <span class="c1">// upload image, get direct link bacl</span>
+        <span class="kt">var</span> <span class="n">url</span> <span class="p">=</span> <span class="k">await</span> <span class="n">Uploader</span><span class="p">.</span><span class="nf">UploadAsync</span><span class="p">(</span><span class="n">args</span><span class="p">[</span><span class="n">i</span><span class="p">]);</span>
+        <span class="c1">// if this is the last file, don't add a new line at the end.</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">i</span> <span class="p">==</span> <span class="n">args</span><span class="p">.</span><span class="n">Length</span><span class="p">-</span><span class="m">1</span><span class="p">)</span>
+            <span class="n">builder</span><span class="p">.</span><span class="nf">Append</span><span class="p">(</span><span class="n">url</span><span class="p">);</span> <span class="c1">// add to url list</span>
+        <span class="k">else</span>
+            <span class="n">builder</span><span class="p">.</span><span class="nf">AppendLine</span><span class="p">(</span><span class="n">url</span><span class="p">);</span> <span class="c1">// add line to url list</span>
+        <span class="n">Console</span><span class="p">.</span><span class="nf">WriteLine</span><span class="p">(</span><span class="n">url</span><span class="p">);</span> <span class="c1">// optional</span>
+    <span class="p">}</span>
+    <span class="c1">// set clipboard to the url list </span>
+    <span class="n">Clipboard</span><span class="p">.</span><span class="nf">Set</span><span class="p">(</span><span class="n">builder</span><span class="p">.</span><span class="nf">ToString</span><span class="p">());</span>
+<span class="p">}</span><span class="c1">// another kind of seppuku</span>
+</code></pre></div></div>
+
+<p>Not much to say about that.. I’m using a command line utility called xclip to set the clipboard on linux because I’m too lazy to figure out how to properly do that. Anyways, it works so I’m happy.</p>
+
+<div class="language-cs highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">Clipboard</span>
+<span class="p">{</span>
+    <span class="k">public</span> <span class="k">static</span> <span class="k">void</span> <span class="nf">Set</span><span class="p">(</span><span class="kt">string</span> <span class="n">text</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="c1">// gotta write it into a temp file for xclip :D fuck you xclip :D</span>
+        <span class="kt">var</span> <span class="n">tmpFilePath</span> <span class="p">=</span> <span class="n">Path</span><span class="p">.</span><span class="nf">GetTempFileName</span><span class="p">();</span> 
+        <span class="n">File</span><span class="p">.</span><span class="nf">WriteAllText</span><span class="p">(</span><span class="n">tmpFilePath</span><span class="p">,</span> <span class="n">text</span><span class="p">);</span>
+        <span class="k">try</span>
+        <span class="p">{</span>
+          <span class="c1">// now we cat it and pipe it into xclip..</span>
+            <span class="kt">var</span> <span class="n">arguments</span> <span class="p">=</span> <span class="s">$"-c \"cat </span><span class="p">{</span><span class="n">tmpFilePath</span><span class="p">}</span><span class="s"> | xclip -i -selection clipboard\""</span><span class="p">;</span> 
+            <span class="kt">var</span> <span class="n">process</span> <span class="p">=</span> <span class="k">new</span> <span class="n">Process</span>
+            <span class="p">{</span>
+                <span class="n">StartInfo</span> <span class="p">=</span> <span class="k">new</span> <span class="n">ProcessStartInfo</span>
+                <span class="p">{</span>
+                    <span class="n">FileName</span> <span class="p">=</span> <span class="s">"bash"</span><span class="p">,</span>
+                    <span class="n">Arguments</span> <span class="p">=</span> <span class="n">arguments</span><span class="p">,</span>
+                    <span class="n">UseShellExecute</span> <span class="p">=</span> <span class="k">false</span><span class="p">,</span>
+                <span class="p">}</span>
+            <span class="p">};</span>
+            <span class="n">process</span><span class="p">.</span><span class="nf">Start</span><span class="p">();</span>
+            <span class="c1">// y u no exit u shit? setting the clipboard won't take 5sec on the slowest potato. </span>
+            <span class="c1">// Kill after 5 sec, sumting wong.</span>
+            <span class="n">process</span><span class="p">.</span><span class="nf">WaitForExit</span><span class="p">(</span><span class="m">1000</span> <span class="p">*</span> <span class="m">5</span><span class="p">);</span> 
+        <span class="p">}</span>
+        <span class="k">finally</span>
+        <span class="p">{</span>
+            <span class="n">File</span><span class="p">.</span><span class="nf">Delete</span><span class="p">(</span><span class="n">tmpFilePath</span><span class="p">);</span> <span class="c1">// its not you, its me</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h1 id="f5">F5</h1>
+
+<p>We did it. It’s complete.</p>
+
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Print + <span class="nb">shift
+        </span>maim <span class="nt">-s</span> ~/upload.png<span class="p">;</span> cwebp ~/upload.png <span class="nt">-o</span> ~/upload.webp<span class="p">;</span> imgup ~/upload.webp <span class="o">&amp;&amp;</span> play ~/.config/.ding.wav <span class="o">&amp;&amp;</span> trash ~/upload.webp <span class="o">&amp;&amp;</span> ~/upload.png
+</code></pre></div></div>
+
+</div>
+<div class="media author-box">
+    <div class="media-figure">
+        <center>
+            <img class="lazyload" data-src="https://h.img.alumni.re/images/gravatar_14.webp" alt="author" />
+            <!--<img class="lazyload" data-src="https://h.img.alumni.re/images/eye.gif" alt="author" />-->
+        </center>
+    </div>
+    <div class="media-body">
+        <h2>Terrible Developer</h2>
+        I'm always 'reinventing the wheel', I love simplicity and minimalism, I hate using libraries and frameworks on top of frameworks.  I have no former higher education and am self taught in programming, english and pretty much everything else.
+
+        <div class="author-icons">
+            <a href="https://github.com/Alumniminium" alt="go to my github">
+                <img src="https://h.img.alumni.re/assets/github.svg" alt="go to my github" width="48px" height="48px" />
+            </a>
+            <a href="https://discord.gg/Ym5eMSv" alt="join my discord">
+                <img src="https://h.img.alumni.re/assets/discord.svg" alt="join my discord" width="48px"
+                    height="48px" />
+            </a>
+            <a href="mailto:trrbl@her.st" alt="write me a mail">
+                <img src="https://h.img.alumni.re/assets/email.svg" alt="write me a mail" width="48px" height="48px" />
+            </a>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="related">
+  <h2>related posts</h2>
+  <ul class="related-posts">
+    
+    <li>
+      <h3>
+        <a href="/usr/bin/turning-our-image-hosting-service-into-a-cdn.html">> ./turning our image hosting service into a cdn</a>
+      </h3>
+    </li>
+    
+    <li>
+      <h3>
+        <a href="/usr/bin/birth-of-a-programmer.html">> ./the birth of a programmer</a>
+      </h3>
+    </li>
+    
+  </ul>
+</div>
+
+    </div>
+  </main>
+            <script>
+                window.onload = function () {
+                    var script = document.createElement('script');
+                    var firstScript = document.getElementsByTagName('script')[0];
+                    script.type = 'text/javascript';
+                    script.async = true;
+                    script.src = '/sw-register.js?v=' + Date.now();
+                    firstScript.parentNode.insertBefore(script, firstScript);
+                };
+            </script>
+            </body>
+
+
+</html>

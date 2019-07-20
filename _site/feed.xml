@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:webfeeds="http://webfeeds.org/rss/1.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <atom:link href="https://her.st/feed.xml" rel="self" type="application/rss+xml" />
+    <title>trrbl dev blog</title>
+    <link href="https://her.st/feed.xml" rel="self" />
+    <link href="https://her.st//" />
+    <updated>2019-07-20T16:07:05+02:00</updated>
+    <id>https://her.st//</id>
+    <author>
+        <name>Terrible Developer</name>
+    </author>
+
+    
+    <entry>
+        <title>turning our image hosting service into a cdn</title>
+        <id>https://her.st//usr/bin/turning-our-image-hosting-service-into-a-cdn.html</id>
+        <link href="https://her.st//usr/bin/turning-our-image-hosting-service-into-a-cdn.html" />
+        <webfeeds:cover image="https://h.img.alumni.re/images/407aa375-23ab-42d8-bc50-29c41d186567.webp" />
+        <webfeeds:icon>https://h.img.alumni.re/images/407aa375-23ab-42d8-bc50-29c41d186567.webp</webfeeds:icon>
+        <webfeeds:logo>https://h.img.alumni.re/images/407aa375-23ab-42d8-bc50-29c41d186567.webp</webfeeds:logo>
+        <webfeeds:accentColor>FD2186</webfeeds:accentColor>
+        <webfeeds:related layout="card" target="browser"/>
+        <updated>2019-07-15T00:00:00+02:00</updated>
+        <content type="html">
+            &lt;centered&gt;
+&lt;/centered&gt;
+
+        </content>
+    </entry>
+    
+    <entry>
+        <title>creating an image hosting web service</title>
+        <id>https://her.st//usr/bin/creating-image-hosting-web-service-in-csharp.html</id>
+        <link href="https://her.st//usr/bin/creating-image-hosting-web-service-in-csharp.html" />
+        <webfeeds:cover image="https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp" />
+        <webfeeds:icon>https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp</webfeeds:icon>
+        <webfeeds:logo>https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp</webfeeds:logo>
+        <webfeeds:accentColor>FD2186</webfeeds:accentColor>
+        <webfeeds:related layout="card" target="browser"/>
+        <updated>2019-07-11T00:00:00+02:00</updated>
+        <content type="html">
+            &lt;h1 id=&quot;hello-entity&quot;&gt;hello entity,&lt;/h1&gt;
+&lt;p&gt;We’ve got work to do.&lt;/p&gt;
+
+&lt;h2 id=&quot;-needs&quot;&gt;$ needs&lt;/h2&gt;
+&lt;p&gt;Easy to use service that lets us host images and other static data, allows direct linking and embedding. Any webserver will do. I have a virtual server with apache2, so I’ll use that. Considering that box also runs a FTP server, we shall upload our files using FTP and not bother with HTTP POST/PUT crap.&lt;/p&gt;
+
+&lt;p&gt;We also need a command line app that can take an image path as argument, upload it to our service and copies the direct link to it straight into the clipboard. The app should be a command line tool and do nothing without arguments.&lt;/p&gt;
+
+&lt;h2 id=&quot;-requirements&quot;&gt;$ requirements&lt;/h2&gt;
+
+&lt;p&gt;A tiny private server should be able to host everything we need.&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Web Server&lt;/li&gt;
+  &lt;li&gt;FTP Server&lt;/li&gt;
+  &lt;li&gt;SSL&lt;/li&gt;
+  &lt;li&gt;UploaderApp&lt;/li&gt;
+  &lt;li&gt;Possibly a Browser / Management app in the future&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;-setting-up-the-webserver&quot;&gt;$ setting up the webserver&lt;/h2&gt;
+
+&lt;p&gt;First we have to install a webserver. Usually I’d use Nginx, but since I have an apache server already up, I’ll go with that.&lt;/p&gt;
+
+&lt;p&gt;I’ll use a custom subdomain for this service.
+&lt;a href=&quot;https://h.img.alumni.re/&quot;&gt;https://h.img.alumni.re/&lt;/a&gt; 
+Here’s a visual representation why I chose this domain in case you are wondering:&lt;/p&gt;
+
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;   Server   &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;   Type   &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;   Domain   &lt;/th&gt;
+      &lt;th style=&quot;text-align: center&quot;&gt;   TLD   &lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;h&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;img&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;alumni&lt;/td&gt;
+      &lt;td style=&quot;text-align: center&quot;&gt;re&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;the &lt;code class=&quot;highlighter-rouge&quot;&gt;h&lt;/code&gt; symbolizes my Homeserver.&lt;/p&gt;
+
+&lt;h4 id=&quot;install-apache&quot;&gt;install apache:&lt;/h4&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Updating the repos and installing everything we need&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Apache is installed and ready, you can verify that by going to &lt;a href=&quot;http://0.0.0.0/&quot;&gt;http://0.0.0.0/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h4 id=&quot;setup-vhost&quot;&gt;setup VHOST&lt;/h4&gt;
+
+&lt;p&gt;Now its time to configure the virtual host. To do that, we have to create a text file in&lt;/p&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apache2/sites-enabled/&lt;/code&gt; 
+called 
+&lt;code class=&quot;highlighter-rouge&quot;&gt;h.img.alumni.re.conf&lt;/code&gt; (replace the name with your domain)
+and put some text inside of it.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/apache2/sites-enabled/h.img.alumni.re.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;div class=&quot;language-zsh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;VirtualHost &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;:80&amp;gt;
+        &lt;span class=&quot;c&quot;&gt;# ServerName is supposed to be DOMAIN . TLD&lt;/span&gt;
+        ServerName alumni.re
+        &lt;span class=&quot;c&quot;&gt;# ServerAlias is supposed to be the entire (sub)domain&lt;/span&gt;
+        ServerAlias h.img.alumni.re
+        &lt;span class=&quot;c&quot;&gt;# Document root is where your files will be stored&lt;/span&gt;
+        DocumentRoot /var/www/h.img.alumni.re/html
+
+        ErrorLog &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/error.log
+        CustomLog &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;APACHE_LOG_DIR&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;/access.log combined
+
+&amp;lt;/VirtualHost&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;And for my final trick, let’s create the directory structure for the webserver.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# We've set this path above as DocumentRoot&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; /var/www/h.img.alumni.re
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; /var/www/h.img.alumni.re/html
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;mkdir&lt;/span&gt; /var/www/h.img.alumni.re/html/img
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After setting the DNS records of your subdomain at your provider, your site should be ready, you can verify that by going to it in a browser: &lt;a href=&quot;http://h.img.alumni.re/&quot;&gt;http://h.img.alumni.re/&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2 id=&quot;-setting-up-certbot-for-free-ssl&quot;&gt;$ setting up Certbot for free SSL&lt;/h2&gt;
+
+&lt;p&gt;Pretty important to set up SSL nowdays as every browser will freak the fuck out if your images come from an ‘insecure source’ - basically over &lt;code class=&quot;highlighter-rouge&quot;&gt;http&lt;/code&gt; instead of &lt;code class=&quot;highlighter-rouge&quot;&gt;https&lt;/code&gt; … There’s no real benefit in encrypting static files, but if it makes the browsers happy..&lt;/p&gt;
+
+&lt;div class=&quot;language-bash highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;# Updating the repos and installing everything we need&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt update &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;apache2 certbot python-certbot-apache
+&lt;span class=&quot;c&quot;&gt;# let it do it's magic&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;certbot &lt;span class=&quot;nt&quot;&gt;--apache&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;When you’re asked how you want to enable SSL, chose “redirect”, wait for certbot to finish writing new configs and pulling the certs, then run&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;certbot renew &lt;span class=&quot;nt&quot;&gt;--dry-run&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;If that command fails, check &lt;a href=&quot;https://certbot.eff.org/help/&quot;&gt;Certbot Help&lt;/a&gt; otherwise, let’s automate the renewal process by adding&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;0 1 * * * /usr/bin/certbot renew &amp;amp; &amp;gt; /dev/null
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;to your crontab (&lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;gt; crontab -e&lt;/code&gt;) - and dont forget the new line at the end or it will complain..&lt;/p&gt;
+
+&lt;h2 id=&quot;-setup-ftp&quot;&gt;$ setup FTP&lt;/h2&gt;
+
+&lt;p&gt;I regret using FTP for this already, but let’s get it installed and setup. In theory, you could skip this step and use http uploads, but I rather have something isolated from the webserver, as I plan on writing my own webserver for static content later, and I probably won’t impement anything but GET. Enough rambling, let’s punch in some commands to install it and enable it on boot.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;apt-get &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;vsftpd &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl &lt;span class=&quot;nb&quot;&gt;enable &lt;/span&gt;vsftpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now let’s add our FTP user&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c&quot;&gt;#ftp boi gonna live in the webroot (and get jailed into it)&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; useradd ftp &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-d&lt;/span&gt; /var/www/h.img.alumni.re/html
+&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;passwd ftp
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we have to make sure our server is setup properly. We will need to configure write permissions, ports, directories and authentication. I’ve attached my configuration file which should work for you too.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cat&lt;/span&gt; /etc/vsftpd.conf 
+&lt;span class=&quot;nv&quot;&gt;listen_ipv6&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;anonymous_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;NO
+&lt;span class=&quot;nv&quot;&gt;anon_upload_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;NO
+&lt;span class=&quot;nv&quot;&gt;local_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;write_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;dirmessage_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;use_localtime&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;xferlog_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;connect_from_port_20&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;NO
+&lt;span class=&quot;nv&quot;&gt;secure_chroot_dir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/var/run/vsftpd/empty
+&lt;span class=&quot;nv&quot;&gt;pam_service_name&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;ftp
+&lt;span class=&quot;nv&quot;&gt;rsa_cert_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/etc/letsencrypt/live/h.img.alumni.re/cert.pem
+&lt;span class=&quot;nv&quot;&gt;rsa_private_key_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/etc/letsencrypt/live/h.img.alumni.re/privkey.pem
+&lt;span class=&quot;nv&quot;&gt;ssl_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;require_ssl_reuse&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;NO
+&lt;span class=&quot;nv&quot;&gt;pasv_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;pasv_min_port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1024
+&lt;span class=&quot;nv&quot;&gt;pasv_max_port&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1025
+&lt;span class=&quot;nv&quot;&gt;allow_writeable_chroot&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;chroot_local_user&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;chroot_list_enable&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;YES
+&lt;span class=&quot;nv&quot;&gt;chroot_list_file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/etc/vsftpd.chroot_list
+&lt;span class=&quot;nv&quot;&gt;file_open_mode&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0777
+&lt;span class=&quot;nv&quot;&gt;local_umask&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;022
+
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/vsftpd.chroot_list&lt;/code&gt; is an empty file. Just run&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo touch&lt;/span&gt; /etc/vsftpd.chroot_list
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;to create it, also notice I’m re-using our SSL cert we got for our webserver earlier. I’ve taken the default path here, so when certbot renews it, vsftpd will always use the newest one.&lt;/p&gt;
+
+&lt;p&gt;Now let’s start the ftp server.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl start vsftpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3 id=&quot;bonus-step-disallow-ssh-for-ftp-user&quot;&gt;bonus step: disallow ssh for ftp user&lt;/h3&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;nano /etc/ssh/sshd_config
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Add/edit the following line&lt;/p&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;DenyUsers ftp &lt;span class=&quot;c&quot;&gt;# ftp is my user&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;o&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;systemctl restart vsftpd
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;-bringing-it-all-together-with-our-c-netcore-app&quot;&gt;$ bringing it all together with our c# netcore app&lt;/h2&gt;
+
+&lt;h4 id=&quot;review&quot;&gt;review&lt;/h4&gt;
+
+&lt;p&gt;Let’s quickly review what we got setup so far so we can start thinking about how we are going to implement that in code..&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Webserver w/ ssl &amp;amp; domain&lt;/li&gt;
+  &lt;li&gt;FTP Server w/ ssl &amp;amp; domain&lt;/li&gt;
+  &lt;li&gt;FTP User w/ r+w access to domain’s root folder&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;and here’s what we still need&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;App that let’s me upload images quickly.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&quot;c&quot;&gt;c#&lt;/h2&gt;
+
+&lt;p&gt;Let’s start with the FTP Upload first. That should be the most difficult part here. Thankfully, the .net framework already has pre-made classes to deal with FTP, namely  &lt;code class=&quot;highlighter-rouge&quot;&gt;FtpWebRequest&lt;/code&gt;. So let’s design our first class, the one responsible for uploading images…&lt;/p&gt;
+
+&lt;div class=&quot;language-cs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Uploader&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// First we will set our root address for the following requests&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FTP_IMG_ROOT&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;ftp://h.img.alumni.re/images/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Next we set our Id file's public HTTP url, we will download this and parse it to set the current Id.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;HTTP_IMG_ID_FILE&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https://h.img.alumni.re/images/Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// We use the curId as something like a counter, so we don't overwrite old files. I decided to do this on the client since *I'm* the only client.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Don't be an idiot.&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+    &lt;span class=&quot;c1&quot;&gt;// Since this is a static class and its initialized only if arguments are passed, its ok to block in the constructor.&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// Don't do this is bigger applications. &lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Uploader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// as stated above, here we download and parse the Id file so we know what the last Id on the server is&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// (it gets worse)&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WebClient&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;WebClient&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;client&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;DownloadFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;HTTP_IMG_ID_FILE&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;TryParse&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ReadAllText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;out&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;nextId&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curId&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// Saves a couple of lines of code :D&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;FtpWebRequest&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CreateUploadRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FtpWebRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;WebRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Create&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;FTP_IMG_ROOT&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Credentials&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;NetworkCredential&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ftp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;root&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;EnableSsl&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this is the reason we can't use WebClient. It won't work with ssl.&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Method&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;WebRequestMethods&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Ftp&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;UploadFile&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+         &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// not sure why i ended up using tasks... i bet they just slow everything down tbh..&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// you test that and email me the results. blog@her.st ;D&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UploadAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// further attemt at creating a more unique path but still giving it some readability.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// this would turn File.txt into File_3948.txt&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// I don't even check if a file with the same name exists and just assume so.&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// Asking the server for a file list, looking for it and THEN starting to upload&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// takse too much time. This is single user anyways, I won't run 20 instances of this shit.&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CreateUploadRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetFileNameWithoutExtension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;_&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curId&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetExtension&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;));&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileStream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;OpenRead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// doing streams like a good boi in case file is biiig&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ftpStream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetRequestStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CopyToAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftpStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// but in the end I take the lazy route.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UpdateId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Told you it'd get worse.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;RequestUri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;AbsoluteUri&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;ftp&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;https&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    
+    &lt;span class=&quot;c1&quot;&gt;// did you think the server would keep track of the counter? &lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;private&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;UpdateId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Interlocked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;curId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// atomicly incrementing our counters because by now i have no idea where our methods execute&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Interlocked&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Increment&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;ref&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nextId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// doing this seems to calm me down, no idea if its snakeoil&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteAllTextAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;curId&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// we write it so we can read it ...&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;CreateUploadRequest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// another request&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileStream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;OpenRead&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;Id.txt&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// this is a file with a fucking number in it. Number might get big, lets use a stream XDDDDDDD&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;using&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ftpStream&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;request&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetRequestStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fileStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;CopyToAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ftpStream&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// another lazy way out&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Couple of lines of code, nothing too fancy, kept it simple for the most part. I wish I went with HTTP uploads instead, having to deal with the FtpWebRequest directly made this class way bigger than it needed to be. Let’s make our &lt;code class=&quot;highlighter-rouge&quot;&gt;Main()&lt;/code&gt; smaller :D&lt;/p&gt;
+
+&lt;div class=&quot;language-cs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;async&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Task&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[]&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// no args? no bueno.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// seppuku&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;StringBuilder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;for&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;++)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// upload image, get direct link bacl&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;await&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Uploader&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;UploadAsync&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+        &lt;span class=&quot;c1&quot;&gt;// if this is the last file, don't add a new line at the end.&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;args&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Length&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Append&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// add to url list&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;AppendLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// add line to url list&lt;/span&gt;
+        &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteLine&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// optional&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;c1&quot;&gt;// set clipboard to the url list &lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;Clipboard&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;builder&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ToString&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;c1&quot;&gt;// another kind of seppuku&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Not much to say about that.. I’m using a command line utility called xclip to set the clipboard on linux because I’m too lazy to figure out how to properly do that. Anyways, it works so I’m happy.&lt;/p&gt;
+
+&lt;div class=&quot;language-cs highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;Clipboard&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;public&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;static&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;Set&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;string&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+      &lt;span class=&quot;c1&quot;&gt;// gotta write it into a temp file for xclip :D fuck you xclip :D&lt;/span&gt;
+        &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;tmpFilePath&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Path&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;GetTempFileName&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt; 
+        &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WriteAllText&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;text&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;try&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+          &lt;span class=&quot;c1&quot;&gt;// now we cat it and pipe it into xclip..&lt;/span&gt;
+            &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;$&quot;-c \&quot;cat &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; | xclip -i -selection clipboard\&quot;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; 
+            &lt;span class=&quot;kt&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;process&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Process&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                &lt;span class=&quot;n&quot;&gt;StartInfo&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;ProcessStartInfo&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;FileName&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;bash&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;Arguments&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;arguments&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                    &lt;span class=&quot;n&quot;&gt;UseShellExecute&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+            &lt;span class=&quot;p&quot;&gt;};&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Start&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// y u no exit u shit? setting the clipboard won't take 5sec on the slowest potato. &lt;/span&gt;
+            &lt;span class=&quot;c1&quot;&gt;// Kill after 5 sec, sumting wong.&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;process&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;WaitForExit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1000&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; 
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;finally&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+            &lt;span class=&quot;n&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;Delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;tmpFilePath&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// its not you, its me&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h1 id=&quot;f5&quot;&gt;F5&lt;/h1&gt;
+
+&lt;p&gt;We did it. It’s complete.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;Print + &lt;span class=&quot;nb&quot;&gt;shift
+        &lt;/span&gt;maim &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; ~/upload.png&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; cwebp ~/upload.png &lt;span class=&quot;nt&quot;&gt;-o&lt;/span&gt; ~/upload.webp&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; imgup ~/upload.webp &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; play ~/.config/.ding.wav &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; trash ~/upload.webp &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; ~/upload.png
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+        </content>
+    </entry>
+    
+    <entry>
+        <title>the birth of a programmer</title>
+        <id>https://her.st//usr/bin/birth-of-a-programmer.html</id>
+        <link href="https://her.st//usr/bin/birth-of-a-programmer.html" />
+        <webfeeds:cover image="https://h.img.alumni.re/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp" />
+        <webfeeds:icon>https://h.img.alumni.re/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp</webfeeds:icon>
+        <webfeeds:logo>https://h.img.alumni.re/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp</webfeeds:logo>
+        <webfeeds:accentColor>FD2186</webfeeds:accentColor>
+        <webfeeds:related layout="card" target="browser"/>
+        <updated>2019-07-10T00:00:00+02:00</updated>
+        <content type="html">
+            &lt;p&gt;&lt;em&gt;This website is hosted on a 1.59$ Micro S server instance. - &lt;a href=&quot;/hosting&quot; alt=&quot;Learn More&quot;&gt;see hosting plans&lt;/a&gt;&lt;/em&gt;&lt;/p&gt;
+
+&lt;center&gt;&lt;img class=&quot;lazyload&quot; data-src=&quot;https://h.img.alumni.re/images/upload_13.webp&quot; width=&quot;50%&quot; alt=&quot;birth&quot; /&gt;&lt;/center&gt;
+
+&lt;p&gt;A bit over a decade ago a series of coincidences made me embark on the quest of becoming a programmer. The event that started everything must have been when thirteen year old me with his old &lt;a href=&quot;http://www.cpu-world.com/CPUs/K7/AMD-Athlon%20XP%202400+%20-%20AXDA2400DKV3C.html&quot;&gt;Athlon XP 2400&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/DDR_SDRAM&quot;&gt;256 MB DDR RAM&lt;/a&gt;, &lt;a href=&quot;https://www.anandtech.com/show/1005&quot;&gt;nforce2 board&lt;/a&gt;,  an (infamous) &lt;a href=&quot;https://en.wikipedia.org/wiki/GeForce_4_series&quot;&gt;Geforce4 MX 440&lt;/a&gt; Windows XP Computer, was trying to play &lt;a href=&quot;https://store.steampowered.com/app/32370/STAR_WARS__Knights_of_the_Old_Republic/&quot;&gt;Star Wars Knights of the Old Republic&lt;/a&gt; in the early 2000’s. 
+it was a very &lt;em&gt;cinematic&lt;/em&gt; experience in the menu, and a glorified PowerPoint presentation inside the &lt;a href=&quot;https://swtor.fandom.com/wiki/Endar_Spire&quot;&gt;Endar Spire&lt;/a&gt;. What I’m talking about? Horrible performance. Single digit framerates.&lt;/p&gt;
+
+&lt;p&gt;I was determined to get to the bottom of this. Why would my computer betray me at a time like this?&lt;/p&gt;
+
+&lt;h2 id=&quot;down-the-rabbithole&quot;&gt;Down the Rabbithole&lt;/h2&gt;
+
+&lt;p&gt;Of course, I immediately tracked down the only Computerstore in town and went there. It was a tiny shop with three or four employees, boss was still working the register and the entire store had a family vibe to it. Not to mention the shelves stacked to the roof with the newest graphics cards, motherboards, CPU’s, networking gear, printers, pre-built Systems, CRTs and a couple of early LCD’s - with the good old 4:3 aspect ratio.&lt;/p&gt;
+
+&lt;p&gt;Now, this PC I had gotten when my family upgraded to a Pentium 4 with Hyperthreading and a Geforce 6600 was already obsolete and the store guy told me that there’s not much to be done, but told me to get another 256MB RAM module now and a better graphics card in the future. I don’t know how much I spent on that module but I vividly remember it was a lot for me back then as a 13-year-old.&lt;/p&gt;
+
+&lt;p&gt;Turns out that guy knew what he was talking about, doubling up on RAM made a big difference! I’d now have ~20 FPS and could actually play the game I was so excited about.&lt;/p&gt;
+
+&lt;p&gt;A month later I found a 35$ (and also infamous) &lt;a href=&quot;https://www.techpowerup.com/gpu-specs/geforce-fx-5500.c926&quot;&gt;Geforce FX 5500&lt;/a&gt; at an electronics store and bought it immediately. It had twice the VRAM and it was bigger! Naively thinking that I had struck a bargain and would go home, put it in, turn up all the graphical settings on all my games and just go&lt;/p&gt;
+
+&lt;center&gt; &lt;img class=&quot;lazyload&quot; data-src=&quot;https://h.img.alumni.re/images/upload_12.webp&quot; width=&quot;75%&quot; alt=&quot;PC Master race&quot; /&gt; &lt;/center&gt;
+
+&lt;p&gt;Yea. It didn’t happen. Still had too little RAM, my CPU was a slow singlecore and I just upgraded to my second mistake.&lt;/p&gt;
+
+&lt;p&gt;It &lt;em&gt;was&lt;/em&gt; an improvement from the Geforce4 MX but not a whole lot more. Turns out the worst cards Nvidia ever realeased up to that point were the Geforce 4 series and the FX 5000 series :) 
+A year later Oblivion came out and the FX 5500 didn’t cut it, went back to the computer shop and got a &lt;a href=&quot;https://www.techpowerup.com/gpu-specs/radeon-hd-2600-pro.c212&quot;&gt;AMD Radeon HD 2600 PRO&lt;/a&gt; because it still worked with the AGP bus. Yes, I wasn’t even using PCIe yet…&lt;/p&gt;
+
+&lt;p&gt;Tinkering with my computer taught me a lot though, I’d open it up, tear it apart and reassemble it, try to run it without all the components, see what happens, change out parts with stuff I sourced from the dumpsters, breaking Windows XP once a month and reinstalling it, buying books about computers or going to the local community center for internet access as I didn’t have any access to the internet at home until next year, try to squeeze out every single bit of performance from this little shitty slow computer was also highly rewarding. I’d obsess over a point increase in benchmark scores, I’d &lt;a href=&quot;https://web.archive.org/web/20060428113026/http://www.motherboards.org/articlesd/how-to-guides/41_1.html&quot;&gt;overvolt and overclock my CPU with a pencil &lt;/a&gt; - nowdays people increase a multiplyer in the bios and think they’re overclockers - disgusting XD - and disable windows services, deleting protected system files to free up some space on my 80GB IDE HDD that sounded like a peppermill being thrown down the stairs when it was doing something .. slowly.&lt;/p&gt;
+
+&lt;p&gt;There was no turning back now. I’ve had become something… else.&lt;/p&gt;
+
+&lt;h2 id=&quot;modding&quot;&gt;Modding&lt;/h2&gt;
+
+&lt;p&gt;&lt;img style=&quot;float: left; margin-right: 30px;&quot; class=&quot;lazyload&quot; data-src=&quot;https://h.img.alumni.re/images/upload_9.webp&quot; alt=&quot;nwedit&quot; width=&quot;25%&quot; /&gt;
+If you didn’t have internet or money, you had to spend a lot of your time with the same things. When I got bored, I couldn’t watch a YouTube video - YouTube didn’t exist - so what do you do? Well, for me it was either going out, walking to friends houses and asking them if they wanted to come outside and do something because - you guessed it - we didn’t have phones either. Also most of the time, you’d go from friend to friend to friend to friend, often walking for hours, through the entire city till you find someone who has time and can be fucking bothered to come out. I’d always try to plan my routes before embarking and it never felt like I had taken the best route. I hadn’t heard of &lt;a href=&quot;https://en.wikipedia.org/wiki/Travelling_salesman_problem&quot;&gt;the traveling salesman problem&lt;/a&gt; yet. The alternative would have been playing old games or making my own maps, items, NPCs, and Quests in the original &lt;a href=&quot;https://www.gog.com/game/neverwinter_nights_enhanced_edition_pack&quot;&gt;Neverwinter Nights&lt;/a&gt;, the only game I owned that shipped with modding tools.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;I thought I could negotiate more computer time with the lifegivers by showing them productivity. A futile endeavour&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;I spent countless hours with the NWEditor, I still remember vividly, sitting in my room, building my first city, populating it with NPC’s, setting waypoints for each of them, making them have a daily routine, loads of dialog and quests …. with rewards that broke the entire game cause I got to set the stats of the items too… That was the first time power corruped me and turned me into a maniac.&lt;/p&gt;
+
+&lt;p&gt;Later I’d buy &lt;a href=&quot;https://www.yoyogames.com/gamemaker&quot;&gt;GameMaker&lt;/a&gt; and &lt;a href=&quot;https://github.com/LeeBamberTGC/FPS-Creator-Classic&quot;&gt;FPS Maker (which is now Open Source!)&lt;/a&gt; trying to make something cool I could show off, but that never happened, GameMaker was too complicated and FPS Maker was the most hideous thing i’ve ever seen and felt terrible. I remember building a D-Day map with hordes of enemies that’d never stop, and you’d have to protect your bunkers for as long as you could. It would work for two waves and then nothing would spawn. Never figured out what was wrong.&lt;/p&gt;
+
+&lt;p&gt;Turns out making games is hard and a thirteen-year-old without any programming experience can’t do it.&lt;/p&gt;
+
+&lt;h2 id=&quot;the-internet&quot;&gt;The Internet&lt;/h2&gt;
+
+&lt;p&gt;Prepaid 3G Internet launched. No contract, no need to be an adult, just walk to the store, get a starter kit with USB Modem and SIM card, plug it in, install the software, dial in and surf. It was amazing. Finally I could play multiplayer games over the internet, finally I could look at websites and see what’s on the internet, download free software, free games, discover piracy, download more &lt;em&gt;cough&lt;/em&gt; free stuff,…&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Fun fact: my 3G internet was a breathtaking 1mbits download (110kb/s) and I paid 25$ per Gigabyte - exactly how much money I got from my granny a month&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Eventually I’ve started playing a random Chinese MMORPG called &lt;a href=&quot;https://co.99.com/&quot;&gt;Conquer Online&lt;/a&gt;, my first MMORPG experience. I spent so much time on this grindy &lt;em&gt;free to play &amp;amp; pay to win&lt;/em&gt; game. 
+Conquer reminded me of Diablo and Sacred even a tiny bit about Neverwinter, so I was immediatelly in love with it and ignored all the pay to win stuff. 
+Then one day another one of life’s coincidences: Googling around for Conquer leveling bots and hacks, I came around a game-hacking forum and on it I’d find something that’d change my life forever.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;This game actually had a pretty new private server community and there were private server source codes available for download.&lt;/em&gt;&lt;/p&gt;
+
+&lt;h3 id=&quot;to-be-continued&quot;&gt;&lt;em&gt;to be continued&lt;/em&gt;&lt;/h3&gt;
+
+        </content>
+    </entry>
+    
+
+</feed>
