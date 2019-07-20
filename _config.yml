@@ -1,0 +1,54 @@
+title: trrbl dev blog
+author: Terrible Developer
+authorBio: > 
+  I'm always 'reinventing the wheel', I love simplicity and minimalism, I hate using libraries and frameworks on top of frameworks. 
+  I have no former higher education and am self taught in programming, english and pretty much everything else.
+email: dom@alumni.re
+description: Self-Hosting, Minimalism, Linux, .NetCore. I'll take you on a programming adventure and before long, we will write terrible code together.
+show_excerpts: true # set to true to show excerpts on the homepage
+url: https://her.st/
+paginate: 3
+paginate_path: "/posts/:num/"
+
+tag_permalink_style: pretty
+tag_page_layout: tag_page
+tag_page_dir: tag
+sass:
+  style: compressed
+dash:
+  date_format: "%b %-d, %Y"
+  social_links:
+    - url: https://github.com/Alumniminium
+      icon: https://h.img.alumni.re/assets/github.svg
+    - url: /hosting/
+      icon: https://h.img.alumni.re/assets/server.svg
+
+pwa:
+  sw_src_filepath: service-worker.js # Optional
+  sw_dest_filename: service-worker.js # Optional
+  dest_js_directory: assets/js # Required
+  precache_recent_posts_num: 5 # Optional
+  precache_glob_directory: / # Optional
+  precache_glob_patterns: # Optional
+    - "{js,css,eot,svg,ttf,woff,webp,png,fonts}/**/*.{js,css,eot,svg,ttf,woff,webp,png,fonts}"
+    - index.html
+  precache_glob_ignores: # Optional
+    - sw-register.js
+
+plugins:
+ - jekyll-feed
+ - jekyll-seo-tag
+ - jekyll-paginate
+ - jekyll/tagging
+ - jekyll-pwa-plugin
+
+collections:
+  pages:
+    output: true
+    permalink: :slug/
+
+twitter:
+  card:             "summary_large_image"
+
+
+theme: jekyll-dash
