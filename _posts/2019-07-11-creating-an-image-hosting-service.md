@@ -15,9 +15,14 @@ thumbnail: https://h.img.alumni.re/images/8a6b499b-c703-4e31-8c9f-ac3d468966ca.w
 We've got work to do.
 
 ## $ needs
-Easy to use service that lets us host images and other static data, allows direct linking and embedding. Any webserver will do. I have a virtual server with apache2, so I'll use that. Considering that box also runs a FTP server, we shall upload our files using FTP and not bother with HTTP POST/PUT crap.
+Easy to use service that lets us host images and other static data and allows direct linking and embedding. 
+Any webserver will do. 
+I have a virtual server with apache2, so I'll use that.
+Considering that box also runs a FTP server, we shall upload our files using FTP.
+We also need an app that can take an image path as argument, 
+upload it to our service and copies the direct link to it straight into the clipboard. 
 
-We also need a command line app that can take an image path as argument, upload it to our service and copies the direct link to it straight into the clipboard. The app should be a command line tool and do nothing without arguments.
+The app should be a command line tool and do nothing without arguments.
 
 ## $ requirements
 
@@ -341,10 +346,24 @@ public static class Clipboard
 # F5
 
 
-We did it. It's complete. 
+We did it. The minimal viable product is complete. We will iterate over the code and expand its functionality soon -
+There's a couple of things we can put on our todo list now, as we have a working prototype.
 
+* refactor and clean up the code
+* Convert to WebP
+* create multiple versions of the image
+* * Raw image
+* * Resized to Thumbnail Size
+* Copy all the links into the clipboard with formatting for easy copy/paste into new Article.md 
+
+First things first though, here's how I'll use this application:
 
 ```sh
 Print + shift
         maim -s ~/upload.png; cwebp ~/upload.png -o ~/upload.webp; imgup ~/upload.webp && play ~/.config/.ding.wav && trash ~/upload.webp && ~/upload.png
 ```
+
+`maim` is a screenshot utility and gives you a selection rectangle you can place with your mouse, then save it to my home directory as `upload.png`, run `cwebp` a command line webp converter, saving it as `upload.webp` next to the source file, invoking our app, I've called it `ImgUp`  passing it the `upload.webp` path, then after it finishes uploading, I play a ding sound and delete the files from my home directory. 
+
+The URL to the image is now in my clipboard and I can CTRL+V it here <img src="https://h.img.alumni.re/images/b79eebcd-cdcf-410e-ac0b-067465831887.webp" />
+
