@@ -3,12 +3,22 @@
 <div class="pagination">
   {% if paginator.previous_page %}
   <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-  </a> {% else %} {% endif %}
-  {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %}
-  {{ page }} {% endif %} {% endfor %} {% if paginator.next_page %} <a
-    href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
-  </a>
-  {% else %}
-  {% endif %}
+    <p>
+      <</p> </a> {% else %} <span>
+        <p>
+          <</p> </span> {% endif %} {% for page in (1..paginator.total_pages) %} {% if page == paginator.page %} <span
+            class="webjeda">{{ page }}</span>
+            {% endif %}
+            {% endfor %}
+
+            {% if paginator.next_page %}
+            <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">
+              <p>></p>
+            </a>
+            {% else %}
+            <span>
+              <p>></p>
+            </span>
+            {% endif %}
 </div>
 {% endif %}
