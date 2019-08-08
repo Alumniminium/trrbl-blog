@@ -10,7 +10,6 @@ image: https://h.img.alumni.re/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp
 thumbnail: https://h.img.alumni.re/images/b039d012-785f-4a90-939d-1120759e77c7.webp
 image-credits: Awake For Ever in a Sweet Unrest - Ian Bliss
 ---
-
 *This website is hosted on a 1.59$ Micro S server instance. - <a href="/hosting" alt="Learn More">see hosting plans</a>*
 
 <center><img class="lazyload" data-src="https://h.img.alumni.re/images/upload_13.webp" width="50%" alt="birth"></center>

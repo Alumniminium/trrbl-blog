@@ -9,6 +9,7 @@ permalink: /usr/bin/:slug.html
 image: https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp
 thumbnail: https://h.img.alumni.re/images/8a6b499b-c703-4e31-8c9f-ac3d468966ca.webp
 ---
+<centered>*This website and all of its services are hosted on a 1.59$ Micro S server instance. - <a href="/hosting" alt="Learn More">see hosting plans</a>*</centered>
 
 # hello entity,
 We've got work to do.
