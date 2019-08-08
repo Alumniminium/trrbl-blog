@@ -283,18 +283,12 @@
   & > a, & > span {
     font-weight: normal;
     display: inline-block;
-    min-width: 1em;
-
+    min-width: 0.75em;
     padding: 0.3em 0.6em;
-    border-radius: 0.3em;
     text-align: center;
 
     &:hover {
       text-decoration: none;
-    }
-
-    svg {
-      padding-left: 0.1em;
     }
   }
 
@@ -302,13 +296,13 @@
     color: $color-green;
     background-color: $color-background-dark;
     &:hover {
-      color: lighten($color-green, 20%);
-      background-color: lighten($color-background-dark, 5%);
+      color: lighten($color-green, 30%);
+      background-color: lighten($color-background-dark, 3%);
     }
   }
 
   & > span {
-    color: darken($color-foreground, 20%);
+    color: darken($color-foreground, 30%);
     background-color: darken($color-background-dark, 3%);
   }
 }
