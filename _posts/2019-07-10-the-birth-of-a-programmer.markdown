@@ -10,9 +10,8 @@ image: https://h.img.alumni.re/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp
 thumbnail: https://h.img.alumni.re/images/b039d012-785f-4a90-939d-1120759e77c7.webp
 image-credits: Awake For Ever in a Sweet Unrest - Ian Bliss
 ---
-*This website is hosted on a 1.59$ Micro S server instance. - <a href="/hosting" alt="Learn More">see hosting plans</a>*
 
-<center><img class="lazyload" data-src="https://h.img.alumni.re/images/upload_13.webp" width="50%" alt="birth"></center>
+<center><img class="lazyload" data-src="https://h.img.alumni.re/images/upload_13.webp" height="50%" alt="birth"></center>
 
 A bit over a decade ago a series of coincidences made me embark on the quest of becoming a programmer. The event that started everything must have been when thirteen year old me with his old [Athlon XP 2400](http://www.cpu-world.com/CPUs/K7/AMD-Athlon%20XP%202400+%20-%20AXDA2400DKV3C.html), [256 MB DDR RAM](https://en.wikipedia.org/wiki/DDR_SDRAM), [nforce2 board](https://www.anandtech.com/show/1005),  an (infamous) [Geforce4 MX 440](https://en.wikipedia.org/wiki/GeForce_4_series) Windows XP Computer, was trying to play [Star Wars Knights of the Old Republic](https://store.steampowered.com/app/32370/STAR_WARS__Knights_of_the_Old_Republic/) in the early 2000's. 
 it was a very *cinematic* experience in the menu, and a glorified PowerPoint presentation inside the [Endar Spire](https://swtor.fandom.com/wiki/Endar_Spire). What I'm talking about? Horrible performance. Single digit framerates.
@@ -29,7 +28,7 @@ Turns out that guy knew what he was talking about, doubling up on RAM made a big
 
 A month later I found a 35$ (and also infamous) [Geforce FX 5500](https://www.techpowerup.com/gpu-specs/geforce-fx-5500.c926) at an electronics store and bought it immediately. It had twice the VRAM and it was bigger! Naively thinking that I had struck a bargain and would go home, put it in, turn up all the graphical settings on all my games and just go
 
-<center> <img class="lazyload" data-src="https://h.img.alumni.re/images/upload_12.webp" width="75%" alt="PC Master race"> </center>
+<center> <img class="lazyload" data-src="https://h.img.alumni.re/images/upload_12.webp" height="75%" alt="PC Master race"> </center>
 
 Yea. It didn't happen. Still had too little RAM, my CPU was a slow singlecore and I just upgraded to my second mistake.
 

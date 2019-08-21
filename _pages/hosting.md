@@ -9,9 +9,7 @@ permalink: /hosting/
 Micro plans **share the same public IP** so you will only have **access to a random port range**, if you would like certain ports to be available to you, please tell me before ordering and I'll check if they're available.
 Micro plans also** share the same CPU Cores.** You have **no dedicated CPU time** on those plans, so if half of the other clients decide to run an expensive script at 3pm, you will notice a slowdown at 3pm. That being said, at this point in time, even those plans are** faster than what other providers offer** on their completely oversold servers.
 
-&nbsp;&nbsp;&nbsp;&nbsp;
-
-|     &nbsp;&nbsp;&nbsp;&nbsp;  	| &nbsp;&nbsp;&nbsp;&nbsp;Micro XS&nbsp;&nbsp;&nbsp;&nbsp; 	| &nbsp;&nbsp;&nbsp;&nbsp;Micro S&nbsp;&nbsp;&nbsp;&nbsp; 	| &nbsp;&nbsp;&nbsp;&nbsp;Micro M&nbsp;&nbsp;&nbsp;&nbsp; 	| &nbsp;&nbsp;&nbsp;&nbsp;Micro L&nbsp;&nbsp;&nbsp;&nbsp; 	|
+|       	| Micro XS 	| Micro S 	| Micro M 	| Micro L 	|
 |:-----:	|:--------:	|:-------:	|:-------:	|:-------:	|
 | CPU   	|  Shared  	|  Shared 	|  Shared 	|  Shared 	|
 | RAM   	|   128MB  	|  256MB  	|  512MB  	|  768MB  	|
@@ -19,11 +17,10 @@ Micro plans also** share the same CPU Cores.** You have **no dedicated CPU time*
 | IPs   	|    NAT   	|   NAT   	|   NAT   	|   NAT   	|
 | Price 	|    1$    	|  1.60$  	|  2.30$  	|    3$   	|
 
-
 # Basic Plans
 Basic plans are where things get interesting: You get **dedicated CPU Cores** and **your very own IP** address! Enjoy.
 
-| &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;Basic S&nbsp;&nbsp;&nbsp;&nbsp;        | &nbsp;&nbsp;&nbsp;&nbsp;Basic M&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Basic L&nbsp;&nbsp;&nbsp;&nbsp; | 
+| | Basic S        | Basic M | Basic L | 
 |:-------------| :-------------: |:-------------:| :-------------:|
 |CPU | 1 | 2 | 3 |
 |RAM| 1 GB | 2 GB      |   3 GB | 
@@ -34,7 +31,7 @@ Basic plans are where things get interesting: You get **dedicated CPU Cores** an
 # Pro Plans
 Do you really need this kind of power?
 
-|&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Pro S &nbsp;&nbsp;&nbsp;&nbsp;       | &nbsp;&nbsp;&nbsp;&nbsp;Pro M&nbsp;&nbsp;&nbsp;&nbsp; |
+| | Pro S        | Pro M |
 |:-------------| :-------------: |:-------------:| 
 |CPU | 4 | 8 |
 |RAM| 4 GB | 8 GB | 
@@ -45,7 +42,7 @@ Do you really need this kind of power?
 # Custom Plans
 
 
-| &nbsp;&nbsp;&nbsp;&nbsp;| &nbsp;&nbsp;&nbsp;&nbsp;Amount&nbsp;&nbsp;&nbsp;&nbsp;        | &nbsp;&nbsp;&nbsp;&nbsp;Price&nbsp;&nbsp;&nbsp;&nbsp; | &nbsp;&nbsp;&nbsp;&nbsp;Notes&nbsp;&nbsp;&nbsp;&nbsp; |
+| | Amount        | Price | Notes |
 |:-------------| :-------------: |:-------------:| :-------------:| 
 |CPU | per core | $2.25 | shared CPU core is free|
 |RAM| per 128 MB | $0.80 | |

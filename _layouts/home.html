@@ -2,12 +2,14 @@
 layout: default
 image: https://h.img.alumni.re/images/gravatar_14.webp
 ---
+
+<center>
 <div class="author">
   {% include author.html %}
 </div>
 {% assign posts_count = paginator.posts | size %}
 {% if posts_count > 0 %}
-<div id="outer">
+<div id="outer" style="max-width: 50vw ">
   {% for post in paginator.posts %}
   <center>
     <div class="post-link-wrapper">
@@ -30,6 +32,7 @@ image: https://h.img.alumni.re/images/gravatar_14.webp
   </center>
   {% endfor %}
 </div>
+</center>
 <div class="outer">
   <div>
     {% include pagination.html %}

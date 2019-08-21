@@ -1,10 +1,11 @@
 ---
 layout: default
 ---
-<img class="lazyload" data-src="{{ page.image }}" alt="{{ page.image-credits }}" width="100%" />
 <center>
+  <img class="lazyload" data-src="{{ page.image }}" alt="{{ page.image-credits }}" width="75%" style="margin-top: 0.5rem"/>
   <div class="post-description"><i>{{ page.image-credits }}</i></div>
-</center>
+  <div class="post-date">Published on {{ page.date | date_to_string }}</div>
+ </center>
 <div class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   {% if site.plugins contains "jekyll/tagging" %}
@@ -14,7 +15,6 @@ layout: default
     {% endfor %}
   </div>
   {% endif %}
-  <div class="post-date">Published on {{ page.date | date_to_string }}</div>
   {{ content }}
 </div>
 {% include authorbox.html %}
@@ -39,3 +39,5 @@ layout: default
   </ul>
 </div>
 {% endif %}
+
+<div class="hosting-ad"><i>I'm running a tiny hosting company for fun! This website (and everything I write about) is hosted on a 1.60$ Micro S server instance. <a href="/hosting" alt="Learn More">see hosting plans</a></i></div>

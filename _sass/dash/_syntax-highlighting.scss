@@ -5,8 +5,8 @@
   font-family: $syntax-font-family;
   line-height: $syntax-line-height;
   font-weight: 600;
-  width: 80vw;
-  margin-left: calc(-40vw + 50%);
+/*   width: 80vw;
+  margin-left: calc(-40vw + 50%); */
 
   .c     { color: #7F8D9A;} // Comment
   .err   { color: #a61717; } // Error
@@ -73,7 +73,7 @@
 @media only screen and (max-width: 1200px) 
 {
   .highlight {
-    width: 100vw;
-    margin-left: calc(-50vw + 50%);
+/*     width: 100vw;
+    margin-left: calc(-50vw + 50%); */
   }
 }

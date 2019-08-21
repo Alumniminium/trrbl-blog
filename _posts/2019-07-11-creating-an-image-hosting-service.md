@@ -9,7 +9,6 @@ permalink: /usr/bin/:slug.html
 image: https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp
 thumbnail: https://h.img.alumni.re/images/8a6b499b-c703-4e31-8c9f-ac3d468966ca.webp
 ---
-<centered>*This website and all of its services are hosted on a 1.59$ Micro S server instance. - <a href="/hosting" alt="Learn More">see hosting plans</a>*</centered>
 
 # hello entity,
 We've got work to do.
@@ -365,5 +364,6 @@ Print + shift
 
 `maim` is a screenshot utility and gives you a selection rectangle you can place with your mouse, then save it to my home directory as `upload.png`, run `cwebp` a command line webp converter, saving it as `upload.webp` next to the source file, invoking our app, I've called it `ImgUp`  passing it the `upload.webp` path, then after it finishes uploading, I play a ding sound and delete the files from my home directory. 
 
-The URL to the image is now in my clipboard and I can CTRL+V it here <img src="https://h.img.alumni.re/images/b79eebcd-cdcf-410e-ac0b-067465831887.webp" />
+The URL to the image is now in my clipboard and I can CTRL+V it here 
+<img src="https://h.img.alumni.re/images/b79eebcd-cdcf-410e-ac0b-067465831887.webp" width="100%" />
 
