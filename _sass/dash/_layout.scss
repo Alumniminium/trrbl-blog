@@ -453,7 +453,10 @@ ul.related-posts {
     margin-bottom: 1em;
     margin-right: 1.5em;
   }
-
+  #outer {
+    margin-top: 1vh;
+    max-width: 900px;
+  }
   @media only screen and (max-width: 800px) {
     .author {
       margin-bottom: 1em;
@@ -467,7 +470,6 @@ ul.related-posts {
 
     #outer {
       margin-top: 1vh;
-      max-width: 900px;
     }
 
     #pages {
