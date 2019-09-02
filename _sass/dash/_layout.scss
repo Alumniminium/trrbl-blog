@@ -86,7 +86,7 @@
     font-size: 16px;
   }
 }
-@media only screen and (max-width: 600px) 
+@media only screen and (max-width: 800px) 
 {
   .post {
     text-align: justify;
@@ -250,7 +250,7 @@
   margin-bottom: 0.5em;
 }
 
-@media only screen and (max-width: 600px)
+@media only screen and (max-width: 800px)
 {
   .post-tags {
     display: flow-root;
@@ -317,7 +317,7 @@
     font-size: $post-link-font-size * 1.35;
   }
 }
- @media only screen and (max-width: 600px)
+ @media only screen and (max-width: 800px)
  {
     ul.related-posts {
 
@@ -454,7 +454,7 @@ ul.related-posts {
     margin-right: 1.5em;
   }
 
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 800px) {
     .author {
       margin-bottom: 1em;
     }
@@ -542,7 +542,7 @@ ul.related-posts {
         width: 192px;
     }
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 800px) {
 
         .author-icons {
             margin-top: 25px;
