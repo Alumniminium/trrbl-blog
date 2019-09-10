@@ -54,3 +54,12 @@ Do you really need this kind of power?
 # Special Plans
 
 My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD storage. Ask me about it :)
+
+# How do I order?!
+
+Currently, this is my first server in a datacenter, so I have not set up any automated order/deployment solution.
+<a href="mailto:trrbl@her.st" alt="write me a mail">Email Me</a> what you want & your paypal email and I'll send your credentials with the billing agreement.
+You can also message me on <a href="https://discord.gg/V2SyvrU" alt="discord invite">discord</a>.
+
+I'm aware that this is a weird way to order in 2019, but that's how I keep my prices down :) 
+I have no licensing fees to pay :)

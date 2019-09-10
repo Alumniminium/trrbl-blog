@@ -10,5 +10,7 @@ image:
 thumbnail: 
 ---
 
-## opening pandora's box
+## 
+
+## opening pandora's box (visual studio 2008)
 

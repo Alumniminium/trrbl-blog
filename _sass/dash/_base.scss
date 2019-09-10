@@ -28,10 +28,6 @@ ul, ol, dl, figure,
   margin-bottom: $spacing-unit / 3;
 }
 
-p {
-  margin: 0.5em 0;
-}
-
 figure {
   width: 100%;
   
@@ -126,17 +122,9 @@ pre {
   }
 }
 .wrapper {
-/*   max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit}));
-  max-width:         calc(#{$content-width} - (#{$spacing-unit})); */
   margin: auto;
-  padding: 0 3vw 0;
+  padding: 0 8vw 0;
   @extend %clearfix;
-
-  @media screen and (min-width: $on-large) {
-/*     max-width: -webkit-calc(#{$content-width} - (#{$spacing-unit} * 2));
-    max-width:         calc(#{$content-width} - (#{$spacing-unit} * 2)); */
-    padding: 0 3vw 0;
-  }
 }
 %clearfix:after {
   content: "";
@@ -144,8 +132,9 @@ pre {
   clear: both;
 }
 
-.hosting-ad {
-  bottom: 0.5rem;
+.hosting-ad {    
+  text-align: center;
+  margin-top: 2rem;
 }
 
 th{
