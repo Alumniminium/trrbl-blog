@@ -15,7 +15,7 @@ Micro plans also** share the same CPU Cores.** You have **no dedicated CPU time*
 | RAM   	|   128MB  	|  256MB  	|  512MB  	|  768MB  	|
 | SSD   	|    4GB   	|   6GB   	|   8GB   	|   10GB  	|
 | IPs   	|    NAT   	|   NAT   	|   NAT   	|   NAT   	|
-| Price 	|    1$    	|  1.60$  	|  2.30$  	|    3$   	|
+| Monthly $ 	|    1$    	|  1.60$  	|  2.30$  	|    3$   	|
 
 # Basic Plans
 Basic plans are where things get interesting: You get **dedicated CPU Cores** and **your very own IP** address! Enjoy.
@@ -26,7 +26,7 @@ Basic plans are where things get interesting: You get **dedicated CPU Cores** an
 |RAM| 1 GB | 2 GB      |   3 GB | 
 |SSD | 10 GB |15 GB | 20 GB | 
 |IPs | 1 | 1  |1|
-|Price | 5$ | 7.50$  | 10$| 
+|Monthly $ | 5$ | 7.50$  | 10$| 
 
 # Pro Plans
 Do you really need this kind of power?
@@ -37,12 +37,12 @@ Do you really need this kind of power?
 |RAM| 4 GB | 8 GB | 
 |SSD | 30 GB | 60 GB | 
 |IPs | 1 | 1  |
-|Price | 15$ | 30$  |
+|Monthly $ | 15$ | 30$  |
 
 # Custom Plans
 
 
-| | Amount        | Price | Notes |
+| | Amount        | Monthly $ | Notes |
 |:-------------| :-------------: |:-------------:| :-------------:| 
 |CPU | per core | $2.25 | shared CPU core is free|
 |RAM| per 128 MB | $0.80 | |
@@ -63,3 +63,4 @@ You can also message me on <a href="https://discord.gg/V2SyvrU" alt="discord inv
 
 I'm aware that this is a weird way to order in 2019, but that's how I keep my prices down :) 
 I have no licensing fees to pay :)
+
