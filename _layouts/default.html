@@ -1,17 +1,15 @@
 <!DOCTYPE html>
 <html lang="{{ page.lang | default: site.lang | default: "en" }}">
-
 {%- include head.html -%}
 
 <body>
-
   {%- include header.html -%}
-
   <main class="page-content" aria-label="Content">
     <div class="wrapper">
       {{ content }}
     </div>
-    <div class="hosting-ad"><i>I'm running a tiny hosting company for fun! This website (and everything I write about) is hosted on a 1.60$ Micro S server instance. <a href="/hosting" alt="Learn More">see hosting plans</a></i></div>
+    <div class="hosting-ad"><i>This website (and everything I write about) is hosted on a 1.60$ server. <a
+          href="/hosting" alt="Learn More">see my hosting plans</a></i></div>
   </main>
 </body>
 

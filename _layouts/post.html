@@ -2,10 +2,11 @@
 layout: default
 ---
 <center>
-  <img class="lazyload" data-src="{{ page.image }}" alt="{{ page.image-credits }}" width="75%" style="margin-top: 0.5rem"/>
+  <img class="lazyload" data-src="{{ page.image }}" alt="{{ page.image-credits }}" width="75%"
+    style="margin-top: 0.5rem" />
   <div class="post-description"><i>{{ page.image-credits }}</i></div>
   <div class="post-date">Published on {{ page.date | date_to_string }}</div>
- </center>
+</center>
 <div id="post-id" class="post">
   <h1 class="post-title">{{ page.title }}</h1>
   {% if site.plugins contains "jekyll/tagging" %}
@@ -18,12 +19,6 @@ layout: default
   {{ content }}
 </div>
 {% include authorbox.html %}
-{% if site.dash.disqus.shortname %}
-<div class="comments">
-  {% include disqus.html %}
-</div>
-{% endif %}
-
 {% assign size = site.related_posts | size %}
 {% if size != 0 %}
 <div class="related">
@@ -39,4 +34,3 @@ layout: default
   </ul>
 </div>
 {% endif %}
-
