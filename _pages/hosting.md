@@ -57,6 +57,7 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 
 # How do I order?!
 
+<div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>
 Currently, this is my first server in a datacenter, so I have not set up any automated order/deployment solution.
 <a href="mailto:trrbl@her.st" alt="write me a mail">Email Me</a> what you want & your paypal email and I'll send your credentials with the billing agreement.
 You can also message me on <a href="https://discord.gg/V2SyvrU" alt="discord invite">discord</a>.
