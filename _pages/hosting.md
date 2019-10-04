@@ -63,4 +63,3 @@ You can also message me on <a href="https://discord.gg/V2SyvrU" alt="discord inv
 
 I'm aware that this is a weird way to order in 2019, but that's how I keep my prices down :) 
 I have no licensing fees to pay :)
-
