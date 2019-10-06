@@ -107,13 +107,14 @@
         height: 100%;
         text-align: justify;
         display: inline-flex;
+        padding-bottom: 0.75rem;
       }
   
       .excerpt {
         font-size: 90%;
         font-weight: lighter;
         max-width: 100%;
-        padding-bottom: 2vh;
+        padding-bottom: 2rem;
       }
       .author-icons {
         margin-top: 25px;

@@ -338,8 +338,8 @@ ul.related-posts {
     position: relative;
     font-size: 120%;
     text-align: left;
-    display: grid;
-    padding-bottom: 1.5vh;
+    display: inline-block;
+    padding-bottom: 1rem;
   }
 
   .post-links img {
@@ -360,8 +360,8 @@ ul.related-posts {
     font-size: 75%;
     font-weight: lighter;
     text-align: justify;
-    margin-left: 2.5vw;
-    margin-right: 2.5vw;
+    margin-left: 1rem;
+    margin-right: 1rem;
   }
 
   .post-link-wrapper {
