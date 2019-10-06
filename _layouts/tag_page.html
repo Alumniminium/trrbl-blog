@@ -11,6 +11,7 @@ layout: default
     <div class="title">
       <a href="{{ post.url | relative_url }}" class="post-link">>{{ post.title }}</a>
     </div>
+    <img class="post-thumbnail" src="{{ post.thumbnail }}" />
     <div class="post-meta">
       {{ post.excerpt }}
       <p>{% if site.date_format %}
