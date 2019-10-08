@@ -1,6 +1,16 @@
 
 @media only screen and (max-width: 800px) 
 {
+   .perms
+    {display: none !important;
+    }    
+    .size
+    {display: none !important;
+    }
+    .author{display: none !important;
+    }
+    .date{display: none !important;
+    }
       .author-box {
         display: flex;
         font-size: 80%;
@@ -18,12 +28,12 @@
       }
       .tag, .tag-cloud > a {
         color: $color-green;
-        background-color: $color-background-dark;
+        background-color: $color-background-darker;
         padding: 2%;
         &:hover {
           text-decoration: none;
           color: lighten($color-green, 20%);
-          background-color: lighten($color-background-dark, 5%);
+          background-color: lighten($color-background-darker, 5%);
         }
       }
       ul.related-posts 

@@ -215,13 +215,13 @@
 
 .tag, .tag-cloud > a {
   color: $color-green;
-  background-color: $color-background-dark;
+  background-color: $color-background-darker;
   padding: 0.3em 0.6em;
   border-radius: 0.3em;
   &:hover {
     text-decoration: none;
     color: lighten($color-green, 20%);
-    background-color: lighten($color-background-dark, 5%);
+    background-color: lighten($color-background-darker, 5%);
   }
 }
 

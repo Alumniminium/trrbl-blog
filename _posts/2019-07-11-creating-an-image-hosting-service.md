@@ -48,6 +48,8 @@ Here's a visual representation why I chose this domain in case you are wondering
 
 the `h` symbolizes my Homeserver.
 
+<script id="asciicast-LE8DDiKwULqYMFofPFwALUpe8" src="https://asciinema.org/a/LE8DDiKwULqYMFofPFwALUpe8.js" async></script>
+
 #### install apache:
 
 ```sh
