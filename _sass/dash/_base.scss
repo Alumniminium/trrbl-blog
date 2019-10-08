@@ -1,7 +1,7 @@
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
-  color: $color-foreground;
-  background-color: $color-background-darker;
+  color: #99a1b3;
+  background-color: $color-background-dark;
   -webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
      -moz-font-feature-settings: "kern" 1;
@@ -103,7 +103,7 @@ pre,
 code {
   @include relative-font-size(0.85);
   border-radius: 0.3em;
-  background-color: $color-background-dark;
+  background-color: $color-background-darker;
 }
 
 code {
@@ -141,11 +141,16 @@ pre {
   margin-bottom: 1rem;
 }
 
-th{
-  background-color: #4CAF50;
+th {
+  color: white;
+  background-color: #a11ec6;
+}
+td {
+  color: white;
+  background-color: $color-background-darker;
 }
 th, td {
-  padding: 15px;
+  padding: 1rem;
   text-align: left;
 }
 
@@ -155,6 +160,6 @@ table {
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 0px;
 }
 
