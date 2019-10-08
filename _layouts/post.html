@@ -2,8 +2,9 @@
 layout: default
 ---
 <center>
-  <img class="lazyload" data-src="{{ page.image }}" alt="{{ page.image-credits }}" width="75%"
-    style="margin-top: 0.5rem" />
+  <img class=" lazyloaded" data-src="{{ page.image }}" alt="{{ page.image-credits }}"
+    style="margin-top: 0.5rem;width: 100%;max-width: 900px;"
+    src="https://h.img.alumni.re/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp">
   <div class="post-description"><i>{{ page.image-credits }}</i></div>
   <div class="post-date">Published on {{ page.date | date_to_string }}</div>
 </center>
