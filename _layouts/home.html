@@ -4,34 +4,34 @@ image: https://h.img.alumni.re/images/gravatar_14.webp
 ---
 
 <center>
-<div class="author">
-  {% include author.html %}
-</div>
-{% assign posts_count = paginator.posts | size %}
-{% if posts_count > 0 %}
-<div id="outer">
-  {% for post in paginator.posts %}
-  <center>
-    <div class="post-link-wrapper">
-      <div class="post-links">
-        <center>
-          <a href="{{ post.url | relative_url }}" aria-label=="{{ post.title }}" class="post-link"
-            alt="{{ post.title }}" id="biggerTitle">./{{ post.title }}</a>
-        </center>
-        <div class="excerpt">
-          <a href="{{ post.url | relative_url }}" aria-label=="{{ post.title }}" alt="{{ post.title }}">
-            <img class="lazyload" data-src="{{ post.thumbnail }}" alt="{{ post.image-credits }}" />
-          </a>
-          {{ post.excerpt }}
+  <div class="author">
+    {% include author.html %}
+  </div>
+  {% assign posts_count = paginator.posts | size %}
+  {% if posts_count > 0 %}
+  <div id="outer">
+    {% for post in paginator.posts %}
+    <center>
+      <div class="post-link-wrapper">
+        <div class="post-links">
+          <center>
+            <a href="{{ post.url | relative_url }}" aria-label=="{{ post.title }}" class="post-link"
+              alt="{{ post.title }}" id="biggerTitle">./{{ post.title }}</a>
+          </center>
+          <div class="excerpt">
+            <a href="{{ post.url | relative_url }}" aria-label=="{{ post.title }}" alt="{{ post.title }}">
+              <img class="lazyload" data-src="{{ post.thumbnail }}" alt="{{ post.image-credits }}" />
+            </a>
+            {{ post.excerpt }}
+          </div>
+          <p class="timestamp">
+            Written by {{ post.author }} on {{ post.date | date: "%b %-d, %Y" }}
+          </p>
         </div>
-        <p class="timestamp">
-          Written by {{ post.author }} on {{ post.date | date: "%b %-d, %Y" }}
-        </p>
       </div>
-    </div>
-  </center>
-  {% endfor %}
-</div>
+    </center>
+    {% endfor %}
+  </div>
 </center>
 <div class="outer">
   <div>
