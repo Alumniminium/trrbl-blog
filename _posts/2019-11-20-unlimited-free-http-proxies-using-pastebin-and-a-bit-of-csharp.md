@@ -49,7 +49,7 @@ private static void WorkLoop()
     }
 }
 ```
-Please note that `Writer` is a `StreamWriter` and is *not* threadsafe. Also `Console`'s threadsafety will break if you start changing colors.
+Please note that `Writer` is a `StreamWriter` and is *not* threadsafe, also `Console`'s threadsafety will break if you start changing colors.
 
 ```csharp
 private static void StartThreads(int threadCount)
@@ -69,7 +69,7 @@ private static void StartThreads(int threadCount)
 ```
 
 ## parsing
-We're having an easy time again. The parser will be a breeze!
+We’re having an easy time again, the parser will be a breeze!
 
 The go-to format you find on pastebin is '`IP:PORT`' like so
 ```
