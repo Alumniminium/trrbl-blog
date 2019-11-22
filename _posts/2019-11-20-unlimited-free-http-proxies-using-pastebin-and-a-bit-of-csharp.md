@@ -128,9 +128,9 @@ public void Test()
 
 ## sorting
 
-It would make sense to do multiple rounds of sorting, by latency, by throughput, by country,... we will focus at sorting by country first. There's 100's of 'free' APIs for 'Geo-IP' lookups, but there's always one catch: after a certain amount of queries, they ask for your credit card.
+It would make sense to do multiple rounds of sorting, by latency, by throughput, by country, we will focus on sorting by country first. There’s 100’s of ‘free’ APIs for ‘Geo-IP’ lookups, but there’s always one catch: after a certain amount of queries, they ask for your credit card.
 
-How do those services do it? I've done some googling and it turns out, there's free databases available, most notably the [IP2Location Db's](https://www.ip2location.com/database) - we will use LITE-DB5 which has a C# parser by the taiwanese [Sky Land Universal Coorporation](https://github.com/SkyLandTW) licensed under the Unlicense. Perfect. Let's legally steal their code and hook it up.
+How do those services do it? I’ve done some googling and as it turns out, there’s free databases available, most notably the [IP2Location Db's](https://www.ip2location.com/database) - we will use LITE-DB5 which has a C# parser by the Taiwanese [Sky Land Universal Coorporation](https://github.com/SkyLandTW) licensed under the Unlicense. Perfect. Let’s legally steal their code and hook it up.
 
 *I will dive deeper into how this db was created in my next networking article*
 ```csharp
@@ -145,7 +145,7 @@ private static void Trace(Proxy proxy)
 ```
 *OrderedProxies?*
 
-as you can see in the code above, I created a `Dictionary<string Country, List<Proxy>>` namely `OrderedProxies` which lets me group the proxies by country very easily. In the next part, I hope to have had time to refactor and rename most of the worst variable and class names. I've been facepalming too much while writing this article.
+As you can see in the code above, I created a `Dictionary<string Country, List<Proxy>>` namely `OrderedProxies` which lets me group the proxies by country very easily. In the next part, I hope to have had time to refactor and rename most of the worst variable and class names. I’ve been facepalming too much while writing this article.
 
 ## what's next?
 
