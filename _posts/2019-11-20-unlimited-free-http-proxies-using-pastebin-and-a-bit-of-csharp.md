@@ -21,7 +21,7 @@ With the shit that's going down in Hong Kong, Iran and dozens of other places ar
 
 But before we even try to automatically search pastebin for new proxy lists, we have to make sure that we can test proxies in the first place; Thankfully, .net comes with [full proxy support](https://docs.microsoft.com/en-us/dotnet/framework/network-programming/how-to-enable-a-webrequest-to-use-a-proxy-to-communicate-with-the-internet) and you can use it in a single line!
 
-I've made one and put it on github, I call it [SockPuppet](https://github.com/Alumniminium/SockPuppet) because it test's SOCKS web proxies.
+I've made one and put it on github, I call it [SockPuppet](https://github.com/Alumniminium/SockPuppet) as it test's SOCKS web proxies.
 <center><img class="lazyload" data-src="https://h.img.alumni.re/images/badum.webp" alt="badum tss"></center>
 
 ## arch
