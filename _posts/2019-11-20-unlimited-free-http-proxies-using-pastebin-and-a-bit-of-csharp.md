@@ -71,14 +71,14 @@ private static void StartThreads(int threadCount)
 ## parsing
 We’re having an easy time again, the parser will be a breeze!
 
-The go-to format you find on pastebin is '`IP:PORT`' like so
+The go-to format you find on pastebin is '`IP:PORT`' like so:
 ```
 222.252.25.168:8080
 178.200.170.41:80
 50.197.38.230:60724
 ...
 ```
-let's write a parser that will only read a sane amount of lines while checking them in the `WorkLoop` on `N` threads. Great performance, great resource utilization. We don't waste RAM or sacrifice startup time by reading everything and instead do everything on demand with a healthy buffer.
+Let’s write a parser that will only read a sane amount of lines while checking them in the `WorkLoop` on `N` threads, great performance, great resource utilization. We don’t waste RAM or sacrifice startup time by reading everything and instead do things on demand with a healthy buffer.
 ```csharp
 while (!Reader.EndOfStream) // while there is shit to read
 {
