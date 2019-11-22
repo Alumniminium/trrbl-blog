@@ -27,10 +27,15 @@ I've made one and put it on github, I call it [SockPuppet](https://github.com/Al
 ## arch
 My version is a simple Producer-Consumer setup that only keeps twice as many proxies in memory as it has worker threads, in case the lists get really big after running the scraper for a few weeks or months. I've annotated the code and encourage you to quickly read over it. The `LoadBlock` is a simple `AutoResetEvent` I use to signal the producer to read more proxies into the queue.
 
-We will dig into `proxy.Test()` and `Trace(proxy)` a bit later. 
+#### BlockingCollection<T> 
+`Proxies` here is a `BlockingCollection<Proxy>`. If you never heard about `BlockingCollection<T>`, it's kinda like a threadsafe `List<T>` that behaves like a `ConcurrentQueue<T>`. You `foreach` it just like a List and every iteration the current item is removed from the collection. That being said, a foreach loop on a BlockingCollection will *never return*. The *Collection* is going to start *Blocking* when it's  empty. Which is perfect for the consumer workloop of our Producer/Consumer setup.
+
 ```csharp
 private static void WorkLoop()
 {
+    // threads will be blocked at Proxies.GetConsumingEnumerable()
+    // as long as everything INSIDE the foreach loop is threadsafe
+    // we can throw as many threads on it as our network can handle
     foreach (var proxy in Proxies.GetConsumingEnumerable())
     {
         if (Proxies.Count < ThreadCount * 2)// allow more proxies to be
@@ -44,7 +49,7 @@ private static void WorkLoop()
     }
 }
 ```
-The beauty of this is, you can throw as many threads on it as you want.
+Please note that `Writer` is a `StreamWriter` and is *not* threadsafe. Also `Console`'s threadsafety will break if you start changing colors.
 
 ```csharp
 private static void StartThreads(int threadCount)
@@ -52,15 +57,19 @@ private static void StartThreads(int threadCount)
     Threads = new Thread[threadCount];
     for (int i = 0; i < threadCount; i++)
     {
-        Threads[i] = new Thread(WorkLoop);
-        Threads[i].IsBackground = true;
+        Threads[i] = new Thread(WorkLoop); // Target the method above
+
+        // IsBackground = true
+        // if the main thread exits kill this thread,
+        // don't wait for it to exit and keep a zombie process running
+        Threads[i].IsBackground = true; 
         Threads[i].Start();
     }
 }
 ```
 
 ## parsing
-Odin smiles upon us, for the parser will be a breeze too!
+We're having an easy time again. The parser will be a breeze!
 
 The go-to format you find on pastebin is '`IP:PORT`' like so
 ```
@@ -69,7 +78,7 @@ The go-to format you find on pastebin is '`IP:PORT`' like so
 50.197.38.230:60724
 ...
 ```
-let's write a parser that will only read a sane amount of lines while checking them in the background. Great performance, great resource utilization. We don't waste RAM by reading everything, we don't waste time during startup loading every proxy, instead everything is on demand with a healthy buffer.
+let's write a parser that will only read a sane amount of lines while checking them in the `WorkLoop` on `N` threads. Great performance, great resource utilization. We don't waste RAM or sacrifice startup time by reading everything and instead do everything on demand with a healthy buffer.
 ```csharp
 while (!Reader.EndOfStream) // while there is shit to read
 {
