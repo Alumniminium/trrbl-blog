@@ -4,7 +4,6 @@ workbox.core.setCacheNameDetails({
     precache: 'precache',
     runtime: 'runtime-cache'
 });
-workbox.skipWaiting();
 workbox.clientsClaim();
 workbox.precaching.precacheAndRoute(self.__precacheManifest);
 workbox.routing.registerRoute(/\.html$/, new workbox.strategies.StaleWhileRevalidate());
