@@ -1,4 +1,9 @@
 body {
+  -webkit-transform: translateZ(0);
+  -moz-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  -o-transform: translateZ(0);
+  transform: translateZ(0);
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: #D8D8D8;
   background: rgb(79, 0, 115);
