@@ -1,5 +1,5 @@
 
-@media only screen and (max-width: 800px) 
+@media only screen and (max-width: 900px) 
 {
    .perms
     {display: none !important;
@@ -107,7 +107,7 @@
         min-height: 145px;
         position: relative;
         margin-top: 0.75vh;
-        font-size: 80%;
+        font-size: 100%;
         text-align: left;
         display: grid;
       }
@@ -121,7 +121,7 @@
       }
   
       .excerpt {
-        font-size: 90%;
+        font-size: 100%;
         font-weight: lighter;
         max-width: 100%;
         padding-bottom: 2rem;

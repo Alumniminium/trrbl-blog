@@ -123,9 +123,11 @@ pre {
 }
 .wrapper {
   margin: auto;
-  padding: 0 24vw 0;
+  padding: 0 8vw 0;
+  max-width: 900px;
   @extend %clearfix;
 }
+
 %clearfix:after {
   content: "";
   display: table;
