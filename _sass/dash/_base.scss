@@ -1,20 +1,10 @@
 body {
-  -webkit-transform: translateZ(0);
-  -moz-transform: translateZ(0);
-  -ms-transform: translateZ(0);
-  -o-transform: translateZ(0);
-  transform: translateZ(0);
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: #D8D8D8;
-  background: rgb(79, 0, 115);
   background: linear-gradient(151deg, #56007e 0%, #13132E 20%, #13132E 85%, #480883 95%, #7e14a1 100%);
   -moz-font-feature-settings: "kern"1;
   -o-font-feature-settings: "kern"1;
   font-feature-settings: "kern"1;
-  font-kerning: normal;
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
 }
 
 body,
@@ -57,10 +47,6 @@ h4,
 h5,
 h6 {
   color: $color-blue;
-}
-
-main {
-  display: block;
 }
 
 figure>img {
