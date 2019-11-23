@@ -53,7 +53,9 @@
    & > .author-avatar {
      float: left;
      white-space: pre-line;
-     margin-right: 1em;
+     margin-right: auto;
+     margin-left: auto;
+     padding-right: 2vw;
      width: 96px;
      height: 96px;
      border-radius: 0.3em;

@@ -6,10 +6,17 @@
   {%- include header.html -%}
   <main class="page-content" aria-label="Content">
     <div class="wrapper">
+      <center>
+        <div class="author">
+          {% include author.html %}
+        </div>
+      </center>
+      <br />
       {{ content }}
     </div>
-    <div class="hosting-ad"><i>This website (and everything I write about) is hosted on a 1.60$ server. <a
-          href="/hosting" alt="Learn More">see my hosting plans</a></i></div>
+    <br />
+    <div class="hosting-ad"><i>This blog (and everything I write about) is hosted on a 1.60$ server. <a href="/hosting"
+          alt="Learn More">see my plans</a></i></div>
   </main>
 </body>
 
