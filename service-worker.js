@@ -7,14 +7,14 @@ workbox.core.setCacheNameDetails({
 workbox.skipWaiting();
 workbox.clientsClaim();
 workbox.precaching.precacheAndRoute(self.__precacheManifest);
-workbox.routing.registerRoute(/\.html$/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/\.js$/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/\.css$/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/\.webp$/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/\.png$/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/\.jpg$/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/assets\/(img|icons)/, workbox.strategies.StaleWhileRevalidate());
-workbox.routing.registerRoute(/^https?:\/\/h.img.alumni.re/, workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/\.html$/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/\.js$/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/\.css$/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/\.webp$/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/\.png$/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/\.jpg$/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/assets\/(img|icons)/, new workbox.strategies.StaleWhileRevalidate());
+workbox.routing.registerRoute(/^https?:\/\/h.img.alumni.re/, new workbox.strategies.StaleWhileRevalidate());
 self.addEventListener('fetch', function (event) {
     event.respondWith(caches.match(event.request).then(function (response) {
         return response || fetch(event.request)
