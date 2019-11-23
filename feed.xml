@@ -21,7 +21,7 @@ layout: none
         <link href="{{ site.url }}{{ post.url }}" />
         <webfeeds:cover image="{{ post.image }}" />
         <webfeeds:icon>{{ post.image }}</webfeeds:icon>
-        <webfeeds:logo>{{ post.image }}</webfeeds:logo>
+        <webfeeds:thumbnail>{{ post.thumbnail }}</webfeeds:logo>
         <webfeeds:accentColor>FD2186</webfeeds:accentColor>
         <webfeeds:related layout="card" target="browser"/>
         <updated>{{ post.date | date_to_xmlschema }}</updated>
