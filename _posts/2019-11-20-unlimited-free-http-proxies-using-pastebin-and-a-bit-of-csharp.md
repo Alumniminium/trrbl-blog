@@ -6,8 +6,8 @@ tags: csharp netcore pastebin proxy proxies
 author: Trrbl
 excerpt: pastebin api + proxy tester = unlimited free proxies. Let's write everything we need and build a database of working proxies. Starting with a simple C# console app that checks if a proxy is working.
 permalink: /usr/bin/:slug.html
-image: https://h.img.alumni.re/images/b9900b38-a016-4ea5-9934-58066e4dec49.webp
-thumbnail: https://h.img.alumni.re/images/f5253821-3aae-4b84-8426-7b12a1183daa.webp
+image: https://h.img.alumni.re/images/proxy1.webp
+thumbnail: https://h.img.alumni.re/images/4d67443d-dd90-4a17-8db4-77331c144e24.webp
 image-credits: this isn't sketchy... we're just organizing unorganized public lists into a database...
 size: 6.74k
 ---
