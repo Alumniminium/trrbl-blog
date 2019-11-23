@@ -1,8 +1,9 @@
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: #99a1b3;
-  background-color: $color-background-dark;
-  -webkit-text-size-adjust: 100%;
+  background: rgb(56,27,113);
+background: linear-gradient(120deg, rgba(60,30,110,1) 0%, rgba(20,40,70,1) 50%, rgba(60,30,110,1) 100%);
+-webkit-text-size-adjust: 100%;
   -webkit-font-feature-settings: "kern" 1;
      -moz-font-feature-settings: "kern" 1;
        -o-font-feature-settings: "kern" 1;
