@@ -1,59 +1,80 @@
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: #D8D8D8;
-background: rgb(79,0,115);
-background: linear-gradient(151deg, rgba(79,0,115,1) 0%, rgba(41,51,92,1) 35%, rgba(41,51,92,1) 72%, rgba(72,8,131,1) 93%, rgba(147,23,187,1) 100%);
-     -moz-font-feature-settings: "kern" 1;
-       -o-font-feature-settings: "kern" 1;
-          font-feature-settings: "kern" 1;
+  background: rgb(79, 0, 115);
+  background: linear-gradient(151deg, #56007e 0%, #13132E 20%, #13132E 85%, #480883 95%, #7e14a1 100%);
+  -moz-font-feature-settings: "kern"1;
+  -o-font-feature-settings: "kern"1;
+  font-feature-settings: "kern"1;
   font-kerning: normal;
   display: flex;
   min-height: 100vh;
   flex-direction: column;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   padding: 0;
 }
+
 *:focus {
-    outline: none;
+  outline: none;
 }
 
-h1, h2, h3, h4, h5, h6,
-blockquote, pre,
-ul, ol, dl, figure,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+blockquote,
+pre,
+ul,
+ol,
+dl,
+figure,
 %vertical-rhythm {
   margin-bottom: $spacing-unit / 3;
 }
 
 figure {
   width: 100%;
-  
+
   margin-left: -50px;
   margin-right: -50px;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   color: $color-blue;
 }
+
 main {
   display: block;
 }
-figure > img {
+
+figure>img {
   display: block;
 }
 
 figcaption {
   font-size: $small-font-size;
 }
-ul, ol {
+
+ul,
+ol {
   margin-left: $spacing-unit;
 }
 
 li {
-  > ul,
-  > ol {
+
+  >ul,
+  >ol {
     margin-bottom: 0;
   }
 }
@@ -63,7 +84,12 @@ video {
   border-radius: 0.3em;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: monospace;
   font-weight: 700;
   margin-top: 5vh;
@@ -88,6 +114,7 @@ a {
     }
   }
 }
+
 blockquote {
   color: $color-background-dark;
   @include relative-font-size(1.125);
@@ -98,6 +125,7 @@ blockquote {
     margin-bottom: 0;
   }
 }
+
 pre,
 code {
   @include relative-font-size(0.85);
@@ -114,12 +142,13 @@ pre {
   padding: 8px 12px;
   overflow-x: auto;
 
-  > code {
+  >code {
     border: 0;
     padding-right: 0;
     padding-left: 0;
   }
 }
+
 .wrapper {
   margin: auto;
   padding: 0 8vw 0;
@@ -133,10 +162,11 @@ pre {
   clear: both;
 }
 
-.hosting-ad {    
+.hosting-ad {
   text-align: center;
   margin-top: 2rem;
 }
+
 .post-thumbnail {
   padding-left: 1rem;
   margin-bottom: 1rem;
@@ -146,11 +176,14 @@ th {
   color: white;
   background-color: #a11ec6;
 }
+
 td {
   color: white;
   background-color: $color-background-darker;
 }
-th, td {
+
+th,
+td {
   padding: 1rem;
   text-align: left;
 }
@@ -160,7 +193,8 @@ table {
   border-collapse: collapse;
 }
 
-table, th, td {
+table,
+th,
+td {
   border: 0px;
 }
-
