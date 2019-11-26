@@ -25,10 +25,16 @@ I've made one and put it on github, I call it [SockPuppet](https://github.com/Al
 <center><img class="lazyload" data-src="https://h.img.alumni.re/images/badum.webp" alt="badum tss"></center>
 
 ## arch
-My version is a simple Producer-Consumer setup that only keeps twice as many proxies in memory as it has worker threads, in case the lists get really big after running the scraper for a few weeks or months. I've annotated the code and encourage you to quickly read over it. The `LoadBlock` is a simple `AutoResetEvent` I use to signal the producer to read more proxies into the queue.
+My version is a simple Producer-Consumer setup that only keeps twice as many proxies in memory as it has worker threads, in case the lists get really big after running the scraper for a few weeks or months. I've annotated the code and encourage you to quickly read over it. 
 
 #### BlockingCollection<T> 
-`Proxies` here is a `BlockingCollection<Proxy>`. If you never heard about `BlockingCollection<T>`, it's kinda like a threadsafe `List<T>` that behaves like a `ConcurrentQueue<T>`. You `foreach` it just like a List and every iteration the current item is removed from the collection. That being said, a foreach loop on a BlockingCollection will *never return*. The *Collection* is going to start *Blocking* when it's  empty. Which is perfect for the consumer workloop of our Producer/Consumer setup.
+`Proxies` here is a `BlockingCollection<Proxy>`. If you never heard about `BlockingCollection<T>`, it's kinda like a threadsafe `List<T>` that behaves like a `ConcurrentQueue<T>`. You `foreach` it just like a List and every iteration the current item is removed from the collection. That being said, a foreach loop on a BlockingCollection will *never return*. The *Collection* is going to start *Blocking* when it's  empty - which is perfect for the consumer workloop of our Producer/Consumer setup.
+
+In addition, it can also be made to block on `Add(T item)`! Usually we'd need a lock of some kind to keep the 'queue' from growing too big. Simply instantiate it with the overload that accepts an `int` for `boundCapacity` like so: 
+```csharp
+var blockingColl = new BlockingCollection<T>(10);
+```
+and `bockingColl.Add()` will block as soon as there's 10 elements in it. 
 
 ```csharp
 private static void WorkLoop()
@@ -38,8 +44,6 @@ private static void WorkLoop()
     // we can throw as many threads on it as our network can handle
     foreach (var proxy in Proxies.GetConsumingEnumerable())
     {
-        if (Proxies.Count < ThreadCount * 2)// allow more proxies to be
-            LoadBlock.Set();          // loaded from proxy list
         proxy.Test();                 // connect to proxy, download website
         if (proxy.Alive && proxy.Safe)// Safe = Identical response as without proxy
             Writer?.WriteLine(proxy); // write to output file
@@ -90,9 +94,6 @@ while (!Reader.EndOfStream) // while there is shit to read
 
     var proxy = new Proxy(ip, port, timeout);
     Proxies.Add(proxy); // BlockingCollection<Proxy>
-
-    if (Proxies.Count > threadCount * 2)
-        LoadBlock.WaitOne(); // Enough in the Queue, wait till we get signaled.
 }
 ```
 
@@ -145,7 +146,7 @@ private static void Trace(Proxy proxy)
 ```
 *OrderedProxies?*
 
-As you can see in the code above, I created a `Dictionary<string Country, List<Proxy>>` namely `OrderedProxies` which lets me group the proxies by country very easily. In the next part, I hope to have had time to refactor and rename most of the worst variable and class names. I’ve been facepalming too much while writing this article.
+As you can see in the code above, I created a `Dictionary<string Country, List<Proxy>>` namely `OrderedProxies` which lets me group the proxies by country very easily. In the next part, I hope to have had time to refactor and rename most of the worst variable and class names. I’ve been facepalming too much while writing this article. I am fully aware that the `Trace` method makes the entire producer/consumer setup pointless.
 
 ## what's next?
 
