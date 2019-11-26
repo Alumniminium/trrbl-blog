@@ -1,23 +1,37 @@
 .title {
   margin: 1rem;
 }
+
 .site-header {
   position: relative;
+
   .cursor {
     position: relative;
-}
+  }
 
-/* The typing effect */
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
+  /* The typing effect */
+  @keyframes typing {
+    from {
+      width: 0
+    }
 
-/* The typewriter cursor effect */
-@keyframes blink-caret {
-  from, to { border-color: transparent }
-  50% { border-color: orange; }
-}
+    to {
+      width: 100%
+    }
+  }
+
+  /* The typewriter cursor effect */
+  @keyframes blink-caret {
+
+    from,
+    to {
+      border-color: transparent
+    }
+
+    50% {
+      border-color: orange;
+    }
+  }
 
   .command_prompt {
     color: $color-blue;
@@ -59,20 +73,23 @@
 .site-footer {
   margin-bottom: 2em
 }
- .author-box {
-   padding-right: 20px;
-   & > .author-avatar {
-     float: left;
-     white-space: pre-line;
-     margin-right: auto;
-     margin-left: auto;
-     padding-right: 2vw;
-     width: 96px;
-     height: 96px;
-     border-radius: 0.3em;
-   }
- }
- .post-description {
+
+.author-box {
+  padding-right: 20px;
+
+  &>.author-avatar {
+    float: left;
+    white-space: pre-line;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 2vw;
+    width: 96px;
+    height: 96px;
+    border-radius: 0.3em;
+  }
+}
+
+.post-description {
   color: $color-blue;
   margin-top: 0.5em;
   font-size: $base-font-size * 0.85;
@@ -84,7 +101,7 @@
   animation: type 2s steps(60, end);
   margin-bottom: 0.5em;
 
-  & > svg {
+  &>svg {
     color: $color-blue;
     margin-right: 0.6em;
     margin-bottom: -1px;
@@ -97,11 +114,16 @@
     font-size: 16px;
   }
 }
-.media-body {flex: 1;}
-.post-title {
-    color: $color-foreground;
-    text-align: left;
+
+.media-body {
+  flex: 1;
 }
+
+.post-title {
+  color: $color-foreground;
+  text-align: left;
+}
+
 .post-description {
   color: $color-blue;
   margin-top: 0.5em;
@@ -114,7 +136,7 @@
   animation: type 5s steps(60, end);
   margin-bottom: 0.5em;
 
-  & > svg {
+  &>svg {
     color: $color-blue;
     margin-right: 0.6em;
     margin-bottom: -1px;
@@ -130,7 +152,7 @@
 
 .post {
   text-align: justify;
-  
+
   .post-date {
     color: white;
     margin-top: 1em;
@@ -143,17 +165,17 @@
     color: white;
   }
 
-  ol > li {
+  ol>li {
     margin-left: 1em;
     text-align: left;
     margin-bottom: 0.6em;
   }
 
-  ul > li {
+  ul>li {
     text-align: left;
     margin-bottom: 0.6em;
     color: lighten($color-green, 25%);
-    list-style:disc;
+    list-style: disc;
     margin-left: 16px;
 
     svg {
@@ -163,7 +185,8 @@
     }
   }
 
-  ul, ol {
+  ul,
+  ol {
     padding: 0;
     margin-left: 0.5em;
   }
@@ -171,17 +194,17 @@
   em {
     font-weight: 100;
     font-style: italic;
-    color:#FFFCE5;
+    color: #FFFCE5;
   }
 
-  & > blockquote {
+  &>blockquote {
     margin-top: 2em;
     margin-bottom: 1em;
     margin-left: 0.5em;
     font-style: italic;
     color: lighten($color-yellow, 20%);
 
-    & > svg.svg-inline--fa {
+    &>svg.svg-inline--fa {
       color: lighten($color-yellow, 20%);
       float: left;
       width: 3em;
@@ -189,48 +212,57 @@
       margin-right: 1em;
     }
 
-    & > ul > li > svg {
+    &>ul>li>svg {
       color: lighten($color-yellow, 20%);
     }
 
     li {
       color: $color-yellow;
 
-      & > svg {
+      &>svg {
         margin-left: 2em;
       }
     }
   }
 }
 
+#outer-home {
+  margin-top: 1vh;
+  max-width: 1200px;
+}
+
 .post-link-wrapper {
   background-color: $color-background-darker;
-   margin-bottom: 1.1em;
-   & > .post-link {
-     font-size: $base-font-size;
-     font-size: $post-link-font-size;
-   }
+  margin-bottom: 1.1em;
 
-   & > .post-meta {
-     color: $color-foreground-dark;
-     font-size: $small-font-size;
-   }
- }
+  &>.post-link {
+    font-size: $base-font-size;
+    font-size: $post-link-font-size;
+  }
 
- .tag-cloud {
-   margin-bottom: 2em;
-   text-align: left;
-   & > a {
-     display: inline-block;
-     margin-bottom: 1em;
-   }
- }
+  &>.post-meta {
+    color: $color-foreground-dark;
+    font-size: $small-font-size;
+  }
+}
 
-.tag, .tag-cloud > a {
+.tag-cloud {
+  margin-bottom: 2em;
+  text-align: left;
+
+  &>a {
+    display: inline-block;
+    margin-bottom: 1em;
+  }
+}
+
+.tag,
+.tag-cloud>a {
   color: $color-green;
   background-color: $color-background-darker;
   padding: 0.3em 0.6em;
   border-radius: 0.3em;
+
   &:hover {
     text-decoration: none;
     color: lighten($color-green, 20%);
@@ -247,7 +279,7 @@
   font-size: 10px;
   color: lighten($color-background-dark, 5%);
 
-  & > a {
+  &>a {
     color: lighten($color-background-dark, 10%);
     text-decoration: underline;
   }
@@ -256,7 +288,9 @@
 .pagination {
   font-size: $post-link-font-size;
   margin: 1em 0;
-  & > a, & > span {
+
+  &>a,
+  &>span {
     font-weight: normal;
     display: inline-block;
     min-width: 0.75em;
@@ -268,16 +302,17 @@
     }
   }
 
-  & > a {
+  &>a {
     color: $color-green;
     background-color: $color-background-dark;
+
     &:hover {
       color: lighten($color-green, 30%);
       background-color: lighten($color-background-dark, 3%);
     }
   }
 
-  & > span {
+  &>span {
     color: darken($color-foreground, 30%);
     background-color: darken($color-background-dark, 3%);
   }
@@ -286,7 +321,8 @@
 .social_links {
   text-align: right;
   display: inline-block;
-  & > a {
+
+  &>a {
     color: darken($color-foreground, 10%);
     display: inline-block;
     padding-left: 0.3em;
@@ -296,24 +332,26 @@
 
 ul.related-posts {
 
-    margin: 0;
-    margin-left: 0.5em;
-    padding: 0;
+  margin: 0;
+  margin-left: 0.5em;
+  padding: 0;
 
-  & > li {
+  &>li {
     list-style: none;
     margin-left: 0;
+
     a {
       display: inline-block;
       padding-top: 0.5em;
       padding-bottom: 0.5em;
     }
+
     h3 {
       display: inline-block;
       margin: 0;
     }
 
-    & > svg.svg-inline--fa {
+    &>svg.svg-inline--fa {
       color: $color-green;
       margin-right: 0.1em;
       width: 32;
@@ -322,134 +360,140 @@ ul.related-posts {
     }
   }
 }
+
 #pages {
-    display: block;
+  display: block;
+}
+
+.post-link {
+  font-family: monospace;
+  font-weight: 600;
+  font-size: 150%;
+  display: block;
+  margin-top: 0.65vh;
+  margin-bottom: 0.65vh;
+}
+
+.author {
+  margin-bottom: 2em;
+}
+
+.post-meta {
+  background-color: #1a203e;
+  padding-bottom: 0.25vh;
+  padding-top: 0;
+  padding-left: 2%;
+  padding-right: 2%;
+}
+
+.post-links {
+  min-height: 145px;
+  position: relative;
+  font-size: 120%;
+  text-align: left;
+  display: inline-block;
+  padding-bottom: 1rem;
+}
+
+.post-links img {
+  float: left;
+  width: 40%;
+  margin-right: 1vw;
+}
+
+.page-links {
+  margin-top: 15px;
+  font-size: 125%;
+  word-spacing: normal;
+  text-align: left;
+}
+
+.excerpt {
+  position: relative;
+  font-size: 75%;
+  font-weight: lighter;
+  text-align: justify;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
+.tags-wrapper {
+  background-color: #1a203e;
+  display: flex;
+  font-size: 100%;
+  margin: 1rem;
+
+  a {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-left: 1rem;
   }
 
-  .post-link {
-    font-family: monospace;
-    font-weight: 600;
-    font-size: 150%;
-    display: block;
-    margin-top: 0.65vh;
-    margin-bottom: 0.65vh;
+  p {
+    margin-block-start: 0.5rem;
+    margin-block-end: 0.5rem;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    margin-left: 0.25rem;
+  }
+
+  .perms {
+    color: aquamarine;
+  }
+
+  .size {
+    color: fuchsia;
   }
 
   .author {
-    margin-bottom: 2em;
+    color: lightcoral;
   }
 
-  .post-meta {
-    background-color: #1a203e;
-    padding-bottom: 0.25vh;
-    padding-top: 0;
-    padding-left: 2%;
-    padding-right: 2%;
+  .date {
+    color: mediumspringgreen;
   }
+}
 
-  .post-links {
-    min-height: 145px;
-    position: relative;
-    font-size: 120%;
-    text-align: left;
-    display: inline-block;
-    padding-bottom: 1rem;
-  }
+.lazyload {
+  margin: 3vw;
+}
 
-  .post-links img {
-    float: left;
-    width: 40%;
-    margin-right: 1vw;
-  }
+.timestamp {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  font-size: 80%;
+  text-align: right;
+  margin-bottom: 1em;
+  margin-right: 1.5em;
+}
 
-  .page-links {
-    margin-top: 15px;
-    font-size: 125%;
-    word-spacing: normal;
-    text-align: left;
-  }
+#outer {
+  margin-top: 1vh;
+  max-width: 900px;
+}
 
-  .excerpt {
-    position: relative;
-    font-size: 75%;
-    font-weight: lighter;
-    text-align: justify;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
+.author-icons a {
+  margin-left: 4px;
+  margin-right: 4px;
+}
 
-  .tags-wrapper {
-    background-color: #1a203e;
-    display: flex;
-    font-size: 100%;
-    margin: 1rem;
-    a  {
-          margin-block-start: 0.5rem;
-          margin-block-end: 0.5rem;
-          margin-inline-start: 0px;
-          margin-inline-end: 0px;
-          margin-left: 1rem;
-        } 
-        p  {
-          margin-block-start: 0.5rem;
-          margin-block-end: 0.5rem;
-          margin-inline-start: 0px;
-          margin-inline-end: 0px;
-          margin-left: 0.25rem;
-        }
-    .perms
-    {
-      color: aquamarine;
-    }    
-    .size
-    {
-      color: fuchsia;
-    }
-    .author{
-      color: lightcoral;
-    }
-    .date{
-      color: mediumspringgreen;
-    }
-  }
+.author-icons {
+  margin-top: 25px;
+  margin-right: 10%;
+}
 
-  .lazyload {
-    margin: 3vw;
-  }
+.media {
+  display: flex;
+  align-items: flex-start;
+}
 
-  .timestamp {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    font-size: 80%;
-    text-align: right;
-    margin-bottom: 1em;
-    margin-right: 1.5em;
-  }
-  #outer {
-    margin-top: 1vh;
-    max-width: 900px;
-  }
+.media-figure {
+  margin-right: 1em;
+}
 
-      .author-icons a {
-        margin-left: 4px;
-        margin-right: 4px;
-    }
-
-    .author-icons {
-        margin-top: 25px;
-        margin-right: 10%;
-    }
-
-    .media {
-        display: flex;
-        align-items: flex-start;
-    }
-
-    .media-figure {
-        margin-right: 1em;
-    }
-
-    .media-figure img {
-        width: 192px;
-    }
+.media-figure img {
+  width: 192px;
+}
