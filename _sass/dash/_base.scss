@@ -143,7 +143,7 @@ pre {
 .wrapper {
   margin: auto;
   padding: 0 8vw 0;
-  max-width: 900px;
+  max-width: $content-width;
   @extend %clearfix;
 }
 
