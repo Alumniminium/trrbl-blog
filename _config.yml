@@ -9,7 +9,6 @@ show_excerpts: true # set to true to show excerpts on the homepage
 url: https://her.st/
 paginate: 3
 paginate_path: "/posts/:num/"
-
 tag_permalink_style: pretty
 tag_page_layout: tag_page
 tag_page_dir: tag

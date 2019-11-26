@@ -31,12 +31,12 @@ My version is a simple Producer-Consumer setup that only keeps twice as many pro
 `Proxies` here is a `BlockingCollection<Proxy>`. If you never heard about `BlockingCollection<T>`, it's kinda like a threadsafe `List<T>` that behaves like a `ConcurrentQueue<T>`. You `foreach` it just like a List and every iteration the current item is removed from the collection. That being said, a foreach loop on a BlockingCollection will *never return*. The *Collection* is going to start *Blocking* when it's  empty - which is perfect for the consumer workloop of our Producer/Consumer setup.
 
 In addition, it can also be made to block on `Add(T item)`! Usually we'd need a lock of some kind to keep the 'queue' from growing too big. Simply instantiate it with the overload that accepts an `int` for `boundCapacity` like so: 
-```csharp
+```java
 var blockingColl = new BlockingCollection<T>(10);
 ```
 and `bockingColl.Add()` will block as soon as there's 10 elements in it. 
 
-```csharp
+```java
 private static void WorkLoop()
 {
     // threads will be blocked at Proxies.GetConsumingEnumerable()
@@ -55,7 +55,7 @@ private static void WorkLoop()
 ```
 Please note that `Writer` is a `StreamWriter` and is *not* threadsafe, also `Console`'s threadsafety will break if you start changing colors.
 
-```csharp
+```java
 private static void StartThreads(int threadCount)
 {
     Threads = new Thread[threadCount];
@@ -83,7 +83,7 @@ The go-to format you find on pastebin is '`IP:PORT`' like so:
 ...
 ```
 Let’s write a parser that will only read a sane amount of lines while checking them in the `WorkLoop` on `N` threads, great performance, great resource utilization. We don’t waste RAM or sacrifice startup time by reading everything and instead do things on demand with a healthy buffer.
-```csharp
+```java
 while (!Reader.EndOfStream) // while there is shit to read
 {
     //always trim your lines!
@@ -100,7 +100,7 @@ while (!Reader.EndOfStream) // while there is shit to read
 ## testing
 Now, testing the Proxy is super easy. `WebProxy` is a built-in class, just like `HttpWebRequest`. Both together and we're virtually done.
 
-```csharp
+```java
 public void Test()
 {
     try
@@ -134,12 +134,12 @@ It would make sense to do multiple rounds of sorting, by latency, by throughput,
 How do those services do it? I’ve done some googling and as it turns out, there’s free databases available, most notably the [IP2Location Db's](https://www.ip2location.com/database) - we will use LITE-DB5 which has a C# parser by the Taiwanese [Sky Land Universal Coorporation](https://github.com/SkyLandTW) licensed under the Unlicense. Perfect. Let’s legally steal their code and hook it up.
 
 *I will dive deeper into how this db was created in my next networking article*
-```csharp
+```java
 private static void Trace(Proxy proxy)
 {
-    var location = Locator.Locate(IPAddress.Par(proxy.IP));
+    var location = Locator.Locate(IPAddress.Parse(proxy.IP));
 
-    if (!OrderedProxies.ContainsKe(location.Country))
+    if (!OrderedProxies.ContainsKey(location.Country))
         OrderedProxies.Add(location.Country,new List<Proxy>());
     OrderedProxies[location.Country].Add(proxy);
 }
