@@ -6,10 +6,10 @@ image: https://cdn.her.st/images/gravatar_14.webp
 <center>
   {% assign posts_count = paginator.posts | size %}
   {% if posts_count > 0 %}
-  <div id="outer">
+  <div id="outer-home">
     {% for post in paginator.posts %}
     <center>
-      <div class="post-link-wrapper-home">
+      <div class="post-link-wrapper">
         <div class="post-links">
           <center>
             <a href="{{ post.url | relative_url }}" aria-label=="{{ post.title }}" class="post-link"
