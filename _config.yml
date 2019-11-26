@@ -23,8 +23,8 @@ dash:
       icon: https://cdn.her.st/assets/server.svg
 
 pwa:
-  sw_src_filepath: service-worker.js # Optional
-  sw_dest_filename: service-worker.js # Optional
+  sw_src_filepath: service-worker.min.js # Optional
+  sw_dest_filename: service-worker.min.js # Optional
   dest_js_directory: assets/js # Required
   precache_recent_posts_num: 5 # Optional
   precache_glob_directory: / # Optional
@@ -32,7 +32,7 @@ pwa:
     - "{js,css,eot,svg,ttf,woff,webp,png,fonts}/**/*.{js,css,eot,svg,ttf,woff,webp,png,fonts}"
     - index.html
   precache_glob_ignores: # Optional
-    - sw-register.js
+    - sw-register.min.js
     - mainfest.json
 
 plugins:

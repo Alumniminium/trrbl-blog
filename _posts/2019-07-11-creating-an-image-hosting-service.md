@@ -71,7 +71,7 @@ and put some text inside of it.
 > sudo nano /etc/apache2/sites-enabled/h.img.alumni.re.conf
 ```
 
-```zsh
+```sh
 <VirtualHost *:80>
         # ServerName is supposed to be DOMAIN . TLD
         ServerName alumni.re
@@ -102,7 +102,7 @@ After setting the DNS records of your subdomain at your provider, your site shou
 
 Pretty important to set up SSL nowdays as every browser will freak the fuck out if your images come from an 'insecure source' - basically over `http` instead of `https` ... There's no real benefit in encrypting static files, but if it makes the browsers happy..
 
-```bash
+```sh
 # Updating the repos and installing everything we need
 > sudo apt update && sudo apt install apache2 certbot python-certbot-apache
 # let it do it's magic
@@ -215,7 +215,7 @@ and here's what we still need
 
 Let's start with the FTP Upload first. That should be the most difficult part here. Thankfully, the .net framework already has pre-made classes to deal with FTP, namely  `FtpWebRequest`. So let's design our first class, the one responsible for uploading images...
 
-```cs
+```java
 public static class Uploader
 {
     // First we will set our root address for the following requests
@@ -285,7 +285,7 @@ public static class Uploader
 Couple of lines of code, nothing too fancy, kept it simple for the most part. I wish I went with HTTP uploads instead, having to deal with the FtpWebRequest directly made this class way bigger than it needed to be. Let's make our `Main()` smaller :D
 
 
-```cs
+```java
 public static async Task Main(string[] args)
 {
     if (args.Length == 0) // no args? no bueno.
@@ -311,7 +311,7 @@ public static async Task Main(string[] args)
 Not much to say about that.. I'm using a command line utility called xclip to set the clipboard on linux because I'm too lazy to figure out how to properly do that. Anyways, it works so I'm happy. 
 
 
-```cs
+```java
 public static class Clipboard
 {
     public static void Set(string text)
