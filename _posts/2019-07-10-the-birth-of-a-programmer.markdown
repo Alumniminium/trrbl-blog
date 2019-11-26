@@ -6,13 +6,13 @@ author: Trrbl
 excerpt: How did I become a programmer? Well, it all started about 12 years ago, when a series of coincidences would change my life forever. Let me tell you a story...
 tags: personal story programming life
 permalink: /usr/bin/:slug.html
-image: https://h.img.alumni.re/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp
-thumbnail: https://h.img.alumni.re/images/b039d012-785f-4a90-939d-1120759e77c7.webp
+image: https://cdn.her.st/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp
+thumbnail: https://cdn.her.st/images/b039d012-785f-4a90-939d-1120759e77c7.webp
 image-credits: Awake For Ever in a Sweet Unrest - Ian Bliss
 size: 8.44k
 ---
 
-<center><img class="lazyload" data-src="https://h.img.alumni.re/images/upload_13.webp" height="50%" alt="birth"></center>
+<center><img class="lazyload" data-src="https://cdn.her.st/images/upload_13.webp" height="50%" alt="birth"></center>
 
 A bit over a decade ago a series of coincidences made me embark on the quest of becoming a programmer. The event that started everything must have been when thirteen year old me with his old [Athlon XP 2400](http://www.cpu-world.com/CPUs/K7/AMD-Athlon%20XP%202400+%20-%20AXDA2400DKV3C.html), [256 MB DDR RAM](https://en.wikipedia.org/wiki/DDR_SDRAM), [nforce2 board](https://www.anandtech.com/show/1005),  an (infamous) [Geforce4 MX 440](https://en.wikipedia.org/wiki/GeForce_4_series) Windows XP Computer, was trying to play [Star Wars Knights of the Old Republic](https://store.steampowered.com/app/32370/STAR_WARS__Knights_of_the_Old_Republic/) in the early 2000's. 
 it was a very *cinematic* experience in the menu, and a glorified PowerPoint presentation inside the [Endar Spire](https://swtor.fandom.com/wiki/Endar_Spire). What I'm talking about? Horrible performance. Single digit framerates.
@@ -29,7 +29,7 @@ Turns out that guy knew what he was talking about, doubling up on RAM made a big
 
 A month later I found a 35$ (and also infamous) [Geforce FX 5500](https://www.techpowerup.com/gpu-specs/geforce-fx-5500.c926) at an electronics store and bought it immediately. It had twice the VRAM and it was bigger! Naively thinking that I had struck a bargain and would go home, put it in, turn up all the graphical settings on all my games and just go
 
-<center> <img class="lazyload" data-src="https://h.img.alumni.re/images/upload_12.webp" height="75%" alt="PC Master race"> </center>
+<center> <img class="lazyload" data-src="https://cdn.her.st/images/upload_12.webp" height="75%" alt="PC Master race"> </center>
 
 Yea. It didn't happen. Still had too little RAM, my CPU was a slow singlecore and I just upgraded to my second mistake.
 
@@ -42,7 +42,7 @@ There was no turning back now.
 
 ## Modding
 
-<img style="float: left; margin-right: 30px;" class="lazyload" data-src="https://h.img.alumni.re/images/upload_9.webp" alt="nwedit" width="25%">
+<img style="float: left; margin-right: 30px;" class="lazyload" data-src="https://cdn.her.st/images/upload_9.webp" alt="nwedit" width="25%">
 If you didn't have internet or money, you had to spend a lot of your time with the same things. When I got bored, I couldn't watch a YouTube video - YouTube didn't exist - so what do you do? Well, for me it was either going out, walking to friends houses and asking them if they wanted to come outside and do something because - you guessed it - we didn't have phones either. Also most of the time, you'd go from friend to friend to friend to friend, often walking for hours, through the entire city till you find someone who has time and can be fucking bothered to come out. I'd always try to plan my routes before embarking and it never felt like I had taken the best route. I hadn't heard of [the traveling salesman problem](https://en.wikipedia.org/wiki/Travelling_salesman_problem) yet. The alternative would have been playing old games or making my own maps, items, NPCs, and Quests in the original [Neverwinter Nights](https://www.gog.com/game/neverwinter_nights_enhanced_edition_pack), the only game I owned that shipped with modding tools.
 
 *I thought I could negotiate more computer time with the lifegivers by showing them productivity. A futile endeavour*

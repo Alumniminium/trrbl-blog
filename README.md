@@ -1,7 +1,7 @@
 # trrbl-blog
 zis is mein blog, its built with jekyll
 
-![alt text](https://h.img.alumni.re/images/8b06f79e-577e-4f02-9afa-f2458414b871.webp "still did ok")
+![alt text](https://cdn.her.st/images/8b06f79e-577e-4f02-9afa-f2458414b871.webp "still did ok")
 
 
 ### Please consider

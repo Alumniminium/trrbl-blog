@@ -6,8 +6,8 @@ tags: networking linux
 author: Trrbl
 excerpt: 
 permalink: /usr/bin/:slug.html
-image: https://h.img.alumni.re/images/0353a08e-581c-482e-a439-dbf3c42e788c.webp
-thumbnail: https://h.img.alumni.re/images/3b9c290b-692c-413b-80b6-e6b766761976.webp
+image: https://cdn.her.st/images/0353a08e-581c-482e-a439-dbf3c42e788c.webp
+thumbnail: https://cdn.her.st/images/3b9c290b-692c-413b-80b6-e6b766761976.webp
 ---
 
 
