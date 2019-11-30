@@ -5,10 +5,10 @@ author: A Terrible Programmer
 permalink: /stats/
 ---
 
-<figure><embed src="https://wakatime.com/share/@Trrbl/bfe450ea-48bd-418f-bee2-285335124ead.svg"></figure>
+<figure><embed src="https://wakatime.com/share/@Trrbl/c50b6e40-a845-4fc4-9139-1b050647618b.svg"></figure>
 
-<figure><embed src="https://wakatime.com/share/@Trrbl/3a7967e5-dc66-4daf-9b2b-9c0b152934ff.svg"></figure>
+<figure><embed src="https://wakatime.com/share/@Trrbl/0157f919-defd-4174-8434-c7b44904c992.svg"></figure>
 
-<figure><embed src="https://wakatime.com/share/@Trrbl/641213c7-e5fd-4007-960d-9eecc2869f6d.svg"></figure>
+<figure><embed src="https://wakatime.com/share/@Trrbl/58d8945b-82b2-410f-add2-04a68914b855.svg"></figure>
 
-<figure><embed src="https://wakatime.com/share/@Trrbl/cb07bc24-29d6-4c9f-a4d1-e282b595922f.svg"></figure>
+<figure><embed src="https://wakatime.com/share/@Trrbl/5ed3a5a7-9f04-44b1-9988-cf44cdf7eb10.svg"></figure>
