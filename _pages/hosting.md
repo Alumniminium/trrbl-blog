@@ -9,13 +9,13 @@ permalink: /hosting/
 Micro plans **share the same public IP** so you will only have **access to a random port range**, if you would like certain ports to be available to you, please tell me before ordering and I'll check if they're available.
 Micro plans also **share the same CPU Cores.** You have **no dedicated CPU time** on those plans, so if half of the other clients decide to run an expensive script at 3pm, you will notice a slowdown at 3pm. That being said, at this point in time, even those plans are **faster than what other providers offer** on their completely oversold servers.
 
-|       	| Micro XS 	| Micro S 	| Micro M 	| Micro L 	|
-|:-----:	|:--------:	|:-------:	|:-------:	|:-------:	|
-| CPU   	|  Shared  	|  Shared 	|  Shared 	|  Shared 	|
-| RAM   	|   128MB  	|  256MB  	|  512MB  	|  768MB  	|
-| SSD   	|    4GB   	|   6GB   	|   8GB   	|   10GB  	|
-| IPs   	|    NAT   	|   NAT   	|   NAT   	|   NAT   	|
-| Monthly   |    1$    	|  1.60$  	|  2.30$  	|    3$   	|
+|       	| Micro S 	| Micro M 	| Micro L 	|
+|:-----:	|:-------:	|:-------:	|:-------:	|
+| CPU   	|  Shared 	|  Shared 	|  Shared 	|
+| RAM   	|  256MB  	|  512MB  	|  768MB  	|
+| SSD   	|   2GB   	|   4GB   	|   6GB  	|
+| IPs   	|   NAT   	|   NAT   	|   NAT   	|
+| Monthly   |   1$  	|  1.5$  	|    2$   	|
 
 # Basic Plans
 Basic plans are where things get interesting: You get **dedicated CPU Cores** and **your very own IP** address! Enjoy.
