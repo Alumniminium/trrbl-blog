@@ -9,6 +9,7 @@ permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/proxy1.webp
 thumbnail: https://cdn.her.st/images/4d67443d-dd90-4a17-8db4-77331c144e24.webp
 image-credits: this isn't sketchy... we're just organizing unorganized public lists into a database...
+audio: https://cdn.her.st/blockstorage/audio/4ba2caf2-2f47-4588-a77d-236c975efd2e.mp3
 size: 6.74k
 ---
 

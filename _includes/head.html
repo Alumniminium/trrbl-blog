@@ -9,6 +9,14 @@
   <link rel="icon" type="image/png" href="https://cdn.her.st/assets/favicon.png" crossorigin="anonymous" />
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:image" content="{{ page.image }}">
+  <meta name="og:image" content="{{ page.image }}">
+  <meta property="og:type" content="video.movie">
+  <meta property="og:type" content="{{ page.permalink }}">  
+  <meta property="og:video" content="{{ page.audio }}">
+  <meta property="og:video:secure_url" content="{{ page.audio }}">
+  <meta property="og:video:type" content="video/mp4">
+  <meta property="og:video:width" content="480">
+  <meta property="og:video:height" content="50">
   <link rel="apple-touch-icon" href="https://cdn.her.st/images/gravatar_14.webp" />
   {%- seo -%}
   {%- feed_meta -%}
