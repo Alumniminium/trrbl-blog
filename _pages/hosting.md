@@ -59,9 +59,26 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 
 <div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>
 
-Currently, this is my first server in a datacenter, so I have not set up any automated order/deployment solution.
-<a href="mailto:trrbl@her.st" alt="write me a mail">Email Me</a> what you want & your paypal email and I'll send your credentials with the billing agreement.
-You can also message me on <a href="https://discord.gg/V2SyvrU" alt="discord invite">discord</a>.
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="437BZV8CNDPZL">
+<table>
+<tr><td><input type="hidden" name="on0" value="Plans">Plans</td></tr><tr><td><select name="os0">
+	<option value="Micro S">Micro S : $2,00 USD - monthly</option>
+	<option value="Micro M">Micro M : $3,00 USD - monthly</option>
+	<option value="Micro L">Micro L : $4,00 USD - monthly</option>
+	<option value="Basic S">Basic S : $5,00 USD - monthly</option>
+	<option value="Basic M">Basic M : $8,00 USD - monthly</option>
+	<option value="Basic L">Basic L : $10,00 USD - monthly</option>
+	<option value="Pro S">Pro S : $15,00 USD - monthly</option>
+	<option value="Pro M">Pro M : $30,00 USD - monthly</option>
+</select> </td></tr>
+</table>
+<input type="hidden" name="currency_code" value="USD">
+<input type="image" src="https://www.paypalobjects.com/en_US/AT/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
+
 
 I'm aware that this is a weird way to order in 2019, but that's how I keep my prices down :) 
 I have no licensing fees to pay :)
