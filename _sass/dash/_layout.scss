@@ -161,10 +161,6 @@
     margin-left: 1em;
   }
 
-  strong {
-    color: white;
-  }
-
   ol>li {
     margin-left: 1em;
     text-align: left;
@@ -194,7 +190,7 @@
   em {
     font-weight: 100;
     font-style: italic;
-    color: #FFFCE5;
+    color: rgb(253, 233, 81);
   }
 
   &>blockquote {
@@ -287,9 +283,12 @@
   &>a,
   &>span {
     font-weight: normal;
-    display: inline-block;
+    display: table-cell;
     min-width: 0.75em;
-    padding: 0.3em 0.6em;
+    max-width: 0.75em;
+    min-height: 0.5em;
+    max-height: 0.5em;
+    padding: 0.5em;
     text-align: center;
 
     &:hover {
@@ -397,7 +396,6 @@ ul.related-posts {
 }
 
 .page-links {
-  margin-top: 15px;
   font-size: 125%;
   word-spacing: normal;
   text-align: left;

@@ -46,7 +46,7 @@ h3,
 h4,
 h5,
 h6 {
-  color: $color-blue;
+  color: #17fc95;
 }
 
 figure>img {
@@ -121,7 +121,6 @@ pre,
 code {
   @include relative-font-size(0.85);
   border-radius: 0.3em;
-  background-color: $color-background-darker;
 }
 
 code {
@@ -194,4 +193,8 @@ table,
 th,
 td {
   border: 0px;
+}
+
+strong {
+  color: #38c0ff;
 }

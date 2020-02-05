@@ -67,11 +67,11 @@ called
 `h.img.alumni.re.conf` (replace the name with your domain)
 and put some text inside of it.
 
-```sh
+```bash
 > sudo nano /etc/apache2/sites-enabled/h.img.alumni.re.conf
 ```
 
-```sh
+```xml
 <VirtualHost *:80>
         # ServerName is supposed to be DOMAIN . TLD
         ServerName alumni.re
@@ -88,7 +88,7 @@ and put some text inside of it.
 
 And for my final trick, let's create the directory structure for the webserver.
 
-```sh
+```bash
 # We've set this path above as DocumentRoot
 > mkdir /var/www/h.img.alumni.re
 > mkdir /var/www/h.img.alumni.re/html
@@ -102,7 +102,7 @@ After setting the DNS records of your subdomain at your provider, your site shou
 
 Pretty important to set up SSL nowdays as every browser will freak the fuck out if your images come from an 'insecure source' - basically over `http` instead of `https` ... There's no real benefit in encrypting static files, but if it makes the browsers happy..
 
-```sh
+```bash
 # Updating the repos and installing everything we need
 > sudo apt update && sudo apt install apache2 certbot python-certbot-apache
 # let it do it's magic
@@ -111,13 +111,13 @@ Pretty important to set up SSL nowdays as every browser will freak the fuck out 
 
 When you're asked how you want to enable SSL, chose "redirect", wait for certbot to finish writing new configs and pulling the certs, then run
 
-```sh
+```bash
 > sudo certbot renew --dry-run
 ```
 
 If that command fails, check <a href="https://certbot.eff.org/help/">Certbot Help</a> otherwise, let's automate the renewal process by adding 
 
-```
+```bash
 0 1 * * * /usr/bin/certbot renew & > /dev/null
 ```
 
@@ -127,14 +127,14 @@ to your crontab (`> crontab -e`) - and dont forget the new line at the end or it
 
 I regret using FTP for this already, but let's get it installed and setup. In theory, you could skip this step and use http uploads, but I rather have something isolated from the webserver, as I plan on writing my own webserver for static content later, and I probably won't impement anything but GET. Enough rambling, let's punch in some commands to install it and enable it on boot.
 
-```sh
+```bash
 > sudo apt-get install vsftpd -y
 > sudo systemctl enable vsftpd
 ```
 
 Now let's add our FTP user
 
-```sh
+```bash
 #ftp boi gonna live in the webroot (and get jailed into it)
 > useradd ftp -m -d /var/www/h.img.alumni.re/html
 > sudo passwd ftp
@@ -142,7 +142,7 @@ Now let's add our FTP user
 
 Now we have to make sure our server is setup properly. We will need to configure write permissions, ports, directories and authentication. I've attached my configuration file which should work for you too.
 
-```sh
+```ini
 > cat /etc/vsftpd.conf 
 listen_ipv6=YES
 anonymous_enable=NO
@@ -215,7 +215,7 @@ and here's what we still need
 
 Let's start with the FTP Upload first. That should be the most difficult part here. Thankfully, the .net framework already has pre-made classes to deal with FTP, namely  `FtpWebRequest`. So let's design our first class, the one responsible for uploading images...
 
-```java
+```csharp
 public static class Uploader
 {
     // First we will set our root address for the following requests
@@ -285,7 +285,7 @@ public static class Uploader
 Couple of lines of code, nothing too fancy, kept it simple for the most part. I wish I went with HTTP uploads instead, having to deal with the FtpWebRequest directly made this class way bigger than it needed to be. Let's make our `Main()` smaller :D
 
 
-```java
+```csharp
 public static async Task Main(string[] args)
 {
     if (args.Length == 0) // no args? no bueno.
@@ -311,7 +311,7 @@ public static async Task Main(string[] args)
 Not much to say about that.. I'm using a command line utility called xclip to set the clipboard on linux because I'm too lazy to figure out how to properly do that. Anyways, it works so I'm happy. 
 
 
-```java
+```csharp
 public static class Clipboard
 {
     public static void Set(string text)
@@ -360,7 +360,7 @@ There's a couple of things we can put on our todo list now, as we have a working
 
 First things first though, here's how I'll use this application:
 
-```sh
+```bash
 Print + shift
         maim -s ~/upload.png; cwebp ~/upload.png -o ~/upload.webp; imgup ~/upload.webp && play ~/.config/.ding.wav && trash ~/upload.webp && ~/upload.png
 ```
