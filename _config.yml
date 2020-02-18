@@ -42,7 +42,7 @@ plugins:
  - jekyll-paginate
  - jekyll/tagging
  - jekyll-pwa-plugin
-  - jekyll-sitemap
+ - jekyll-sitemap
 
 collections:
   pages:
