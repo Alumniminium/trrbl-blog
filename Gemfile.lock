@@ -44,6 +44,8 @@ GEM
       sass (~> 3.4)
     jekyll-seo-tag (2.6.1)
       jekyll (>= 3.3, < 5.0)
+    jekyll-sitemap (1.4.0)
+      jekyll (>= 3.7, < 5.0)
     jekyll-tagging (1.1.0)
       nuggets
     jekyll-watch (2.2.1)
@@ -79,6 +81,7 @@ DEPENDENCIES
   bundler (~> 2.0.1)
   jekyll-dash!
   jekyll-pwa-plugin
+  jekyll-sitemap
   jekyll-tagging
   rake (~> 12.0)
 
