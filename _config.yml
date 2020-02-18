@@ -42,6 +42,7 @@ plugins:
  - jekyll-paginate
  - jekyll/tagging
  - jekyll-pwa-plugin
+  - jekyll-sitemap
 
 collections:
   pages:
@@ -50,5 +51,3 @@ collections:
 
 twitter:
   card:             "summary_large_image"
-
-
