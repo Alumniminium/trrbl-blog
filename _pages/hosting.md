@@ -57,8 +57,8 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 
 # How do I order?!
 
-<div style="display: flex; float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>
-<div class="paypal">
+<div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>
+<div style="float: left; padding-right: 1rem; clear: right" class="paypal">
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="437BZV8CNDPZL">
