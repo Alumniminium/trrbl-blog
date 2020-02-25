@@ -1,24 +1,7 @@
 @charset "utf-8";
 
-@font-face {
-  font-family: 'Inconsolata', monospace;
-  font-style: normal;
-  font-display: swap;
-  src: url(https://cdn.her.st/assets/fonts/inconsolata.woff2);
-}
-
-@font-face {
-  font-family: 'Roboto Mono';
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url(https://cdn.her.st/assets/fonts/roboto.woff2);
-}
-
-$base-font-family: 'Inconsolata',
-monospace;
-$syntax-font-family: 'Roboto Mono',
-monospace;
+$base-font-family: 'Inconsolata', monospace;
+$syntax-font-family: monospace;
 $base-font-size: 22px !default;
 $post-link-font-size: $base-font-size * 1.2 !default;
 $base-font-weight: 500 !default;
