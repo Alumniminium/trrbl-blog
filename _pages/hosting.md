@@ -57,7 +57,7 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 
 # How do I order?!
 
-<div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>
+<div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="100%" height="400" allowtransparency="true" frameborder="0"></iframe></div>
 <div class="paypal">
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
@@ -76,7 +76,6 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 </table>
 <input type="hidden" name="currency_code" value="USD">
 <input type="image" src="https://www.paypalobjects.com/en_US/AT/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
-<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
 </form>
 </div>
 
