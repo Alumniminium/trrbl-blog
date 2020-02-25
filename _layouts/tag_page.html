@@ -12,7 +12,8 @@ layout: default
   <p class="size">{{ post.size }}</p>
   <p class="author">{{ post.author }}</p>
   <p class="date">{{ post.date | date: "%b %-d, %Y" }}</p>
-  <p><a href="{{ post.url | relative_url }}"> {{ post.title }}.md</a></p>
+  <a href="{{ post.url | relative_url }}"> {{ post.title }}.md</a>
+  <br />
   {% endif %}
   {% endfor %}
   {% endfor %}
