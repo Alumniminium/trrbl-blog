@@ -9,11 +9,10 @@ layout: default
   {% for post in site.posts %}
   {% for tag in post.tags %}
   {% if tag == page.tag %}
-  <p class="perms">.r--r--r--</p>
   <p class="size">{{ post.size }}</p>
   <p class="author">{{ post.author }}</p>
   <p class="date">{{ post.date | date: "%b %-d, %Y" }}</p>
-  <a href="{{ post.url | relative_url }}"> {{ post.title }}.md</a>
+  <p><a href="{{ post.url | relative_url }}"> {{ post.title }}.md</a></p>
   {% endif %}
   {% endfor %}
   {% endfor %}
