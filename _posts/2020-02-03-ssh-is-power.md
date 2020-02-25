@@ -18,7 +18,7 @@ let's just jump right in.
 *Did you know, you can fuckin port forward with fuckin ssh?!*
 You might want to host a gameserver so you can play with your friend, or show a client your progress by giving him 
 access to your local webserver - but you are behind a firewall and don't want to or simply can't forward the ports?
-SSH can do it. All you need is a cheap server, [*like the cheapest of my Micro plans* ]({% link /hosting %}) and you can use it to forward ports in a single line. 
+SSH can do it. All you need is a cheap server, [like the cheapest of my Micro plans]({% link /hosting/ %}) and you can use it to forward ports in a single line. 
 
 ### remote forwarding
 
