@@ -78,6 +78,6 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 <input type="image" src="https://www.paypalobjects.com/en_US/AT/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 </form>
 </div>
-
+<br></br>
 I'm aware that this is a weird way to order in 2019, but that's how I keep my prices down :) 
 I have no licensing fees to pay :)
