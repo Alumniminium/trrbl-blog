@@ -80,4 +80,3 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 <input type="image" src="https://www.paypalobjects.com/en_US/AT/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 </form>
 </div>
-</div>
