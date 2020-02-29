@@ -5,7 +5,10 @@
 <body>
   <link rel="stylesheet" href="/assets/css/highlightjs.css">
   <script defer src="/assets/js/highlight.js"></script>
-  <script defer>hljs.initHighlightingOnLoad();</script>
+  <script defer>$(document).ready(function () {
+      hljs.initHighlighting();
+      // post highlighting code
+    });</script>
   {%- include header.html -%}
   <main class="page-content" aria-label="Content">
     <div class="wrapper">
