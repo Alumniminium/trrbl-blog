@@ -43,6 +43,8 @@ plugins:
  - jekyll/tagging
  - jekyll-pwa-plugin
  - jekyll-sitemap
+ - jekyll-asciinema
+ - jekyll-feed
 
 collections:
   pages:

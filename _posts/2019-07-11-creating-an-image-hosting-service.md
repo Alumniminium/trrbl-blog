@@ -64,11 +64,11 @@ Now its time to configure the virtual host. To do that, we have to create a text
 
 `/etc/apache2/sites-enabled/` 
 called 
-`h.img.alumni.re.conf` (replace the name with your domain)
+`cdn.her.st.conf` (replace the name with your domain)
 and put some text inside of it.
 
 ```bash
-> sudo nano /etc/apache2/sites-enabled/h.img.alumni.re.conf
+> sudo nano /etc/apache2/sites-enabled/cdn.her.st.conf
 ```
 
 ```xml
@@ -76,9 +76,9 @@ and put some text inside of it.
         # ServerName is supposed to be DOMAIN . TLD
         ServerName alumni.re
         # ServerAlias is supposed to be the entire (sub)domain
-        ServerAlias h.img.alumni.re
+        ServerAlias cdn.her.st
         # Document root is where your files will be stored
-        DocumentRoot /var/www/h.img.alumni.re/html
+        DocumentRoot /var/www/cdn.her.st/html
 
         ErrorLog ${APACHE_LOG_DIR}/error.log
         CustomLog ${APACHE_LOG_DIR}/access.log combined
@@ -90,12 +90,12 @@ And for my final trick, let's create the directory structure for the webserver.
 
 ```bash
 # We've set this path above as DocumentRoot
-> mkdir /var/www/h.img.alumni.re
-> mkdir /var/www/h.img.alumni.re/html
-> mkdir /var/www/h.img.alumni.re/html/img
+> mkdir /var/www/cdn.her.st
+> mkdir /var/www/cdn.her.st/html
+> mkdir /var/www/cdn.her.st/html/img
 ```
 
-After setting the DNS records of your subdomain at your provider, your site should be ready, you can verify that by going to it in a browser: <a href="http://h.img.alumni.re/" >http://h.img.alumni.re/</a>
+After setting the DNS records of your subdomain at your provider, your site should be ready, you can verify that by going to it in a browser: <a href="http://cdn.her.st/" >http://cdn.her.st/</a>
 
 
 ## $ setting up Certbot for free SSL
@@ -136,7 +136,7 @@ Now let's add our FTP user
 
 ```bash
 #ftp boi gonna live in the webroot (and get jailed into it)
-> useradd ftp -m -d /var/www/h.img.alumni.re/html
+> useradd ftp -m -d /var/www/cdn.her.st/html
 > sudo passwd ftp
 ```
 
@@ -155,8 +155,8 @@ xferlog_enable=YES
 connect_from_port_20=NO
 secure_chroot_dir=/var/run/vsftpd/empty
 pam_service_name=ftp
-rsa_cert_file=/etc/letsencrypt/live/h.img.alumni.re/cert.pem
-rsa_private_key_file=/etc/letsencrypt/live/h.img.alumni.re/privkey.pem
+rsa_cert_file=/etc/letsencrypt/live/cdn.her.st/cert.pem
+rsa_private_key_file=/etc/letsencrypt/live/cdn.her.st/privkey.pem
 ssl_enable=YES
 require_ssl_reuse=NO
 pasv_enable=YES
@@ -219,7 +219,7 @@ Let's start with the FTP Upload first. That should be the most difficult part he
 public static class Uploader
 {
     // First we will set our root address for the following requests
-    private const string FTP_IMG_ROOT = "ftp://h.img.alumni.re/images/";
+    private const string FTP_IMG_ROOT = "ftp://cdn.her.st/images/";
     // Next we set our Id file's public HTTP url, we will download this and parse it to set the current Id.
     private const string HTTP_IMG_ID_FILE = "https://cdn.her.st/images/Id.txt";
     // We use the curId as something like a counter, so we don't overwrite old files. I decided to do this on the client since *I'm* the only client.

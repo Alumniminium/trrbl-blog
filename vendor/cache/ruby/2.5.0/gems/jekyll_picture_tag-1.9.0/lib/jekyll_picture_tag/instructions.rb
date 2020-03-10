@@ -1,0 +1,5 @@
+require_relative './instructions/set'
+require_relative './instructions/configuration'
+require_relative './instructions/html_attributes'
+require_relative './instructions/preset'
+require_relative './instructions/tag_parser'
