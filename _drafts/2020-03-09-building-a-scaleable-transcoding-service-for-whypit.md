@@ -9,7 +9,7 @@ permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/06ac3787-a8f0-49fc-9dcd-67a857391c04.webp
 thumbnail: https://cdn.her.st/images/e788d86e-f110-440c-8a9b-e03c714ea40a.webp
 image-credits: Landing page https://whyp.it
-size: 3.13k
+size: 3.9k
 ---
 
 # august 2019
@@ -39,10 +39,21 @@ Two hours later I've had uploads and downloads working, I built a producer / con
 
 ## back to the drawingboard
 
-For a couple minutes I've even considered going with the full .net framework in order to make [NAudio](https://github.com/naudio/NAudio) work, but that'd have also meant that we would have to run the transcoders on Windows servers and that'd have been way more expensive not only due to higher resource requirements to just boot the OS, but also licensing fees. No, Windows wouldn't work, I had to find another solution.
+For a couple minutes I've even considered going with the full .net framework in order to make [NAudio](https://github.com/naudio/NAudio) work, but that'd have also meant that we would have to run the transcoders on Windows servers. Running Windows Servers is way more expensive not only due to higher resource requirements but also licensing fees. No, using Windows would be stupid, I had to find another solution.
 
 ## ffmpeg
 
+After a couple of seconds, I realized that I'm playing audio and video just fine on my linux laptop, and that there was [ffmpeg](). Using ffmpeg to transcode the files would be perfect as it supports every format known to man and is designed in a way it can be automated easily. Architecture of the transcoder would now become a bit more complicated so I spent a couple of minutes on that problem. I decided to ask Braed about how to communicate with the backend first as he didn't seem too excited about TCP. We decided on a shared Queue, where he would submit work to and I'd dequeue, process and enqueue in another queue. We didn't know how to share that queue though, so I googled [mysql as a worker queue]() and got 
+
+<center>
+<img class="lazyload" data-src="https://cdn.her.st/images/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
+</center>
+
+
+
+<center>
+<img class="lazyload" data-src="https://cdn.her.st/images/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
+</center>
 
 {% asciicast 239367 %}
 
