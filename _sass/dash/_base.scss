@@ -1,7 +1,7 @@
 body {
   font: $base-font-weight #{$base-font-size}/#{$base-line-height} $base-font-family;
   color: #D8D8D8;
-  background: linear-gradient(151deg, #56007e 0%, #13132E 20%, #13132E 85%, #480883 95%, #56007e 100%);
+  background: linear-gradient(151deg, #56007e 0%, #13132E 20%, #13132E 85%, #13132E 20%, #56007e 100%);
   -moz-font-feature-settings: "kern"1;
   -o-font-feature-settings: "kern"1;
   font-feature-settings: "kern"1;
