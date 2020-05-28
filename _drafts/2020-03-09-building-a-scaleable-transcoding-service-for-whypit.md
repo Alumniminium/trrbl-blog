@@ -55,7 +55,6 @@ After a couple of seconds, I realized that I'm playing audio and video just fine
 <img class="lazyload" data-src="https://cdn.her.st/images/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
 </center>
 
-{% asciicast 239367 %}
 
 How it all began
 <https://discordapp.com/channels/@me/409511488160530432/622527799357341706>

@@ -14,5 +14,6 @@ size: 6.74k
 ---
 
 
+{% asciicast 239367 %}
 <centered>
 </centered>
