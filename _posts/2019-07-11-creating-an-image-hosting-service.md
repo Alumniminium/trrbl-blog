@@ -11,8 +11,7 @@ thumbnail: https://cdn.her.st/images/8a6b499b-c703-4e31-8c9f-ac3d468966ca.webp
 size: 13.78k
 ---
 
-# hello entity,
-We've got work to do.
+# We've got work to do.
 
 ## $ needs
 Easy to use service that lets us host images and other static data and allows direct linking and embedding. 
