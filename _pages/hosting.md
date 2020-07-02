@@ -5,8 +5,6 @@ author: A Terrible Programmer
 permalink: /hosting/
 ---
 
-# !!!CURRENTLY SOLD OUT!!!
-
 # Micro Plans
 Micro plans **share the same public IP** so you will only have **access to a random port range**, if you would like certain ports to be available to you, please tell me before ordering and I'll check if they're available.
 Micro plans also **share the same CPU Cores.** You have **no dedicated CPU time** on those plans, so if half of the other clients decide to run an expensive script at 3pm, you will notice a slowdown at 3pm. That being said, at this point in time, even those plans are **faster than what other providers offer** on their completely oversold servers.
@@ -62,7 +60,7 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 2. Either subscribe using the button below or manually pay every month.
 
 <div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>
-<!--<div style="float: left; padding-right: 1rem; clear: right" class="paypal">
+<div style="float: left; padding-right: 1rem; clear: right" class="paypal">
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="437BZV8CNDPZL">
@@ -81,5 +79,5 @@ My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD stora
 <input type="hidden" name="currency_code" value="USD">
 <input type="image" src="https://www.paypalobjects.com/en_US/AT/i/btn/btn_subscribeCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
 </form>
-</div>-->
+</div>
 
