@@ -56,7 +56,7 @@ Do you really need this kind of power?
 My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD storage. Ask me about it :)
 
 # How do I order?!
-1. Join discord and message me (trrbl)
+1. Join discord and message me (trbl)
 2. Either subscribe using the button below or manually pay every month.
 
 <div style="float: left; padding-right: 1rem; clear: right"><iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="400" height="400" allowtransparency="true" frameborder="0"></iframe></div>

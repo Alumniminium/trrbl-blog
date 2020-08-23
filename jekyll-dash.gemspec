@@ -3,8 +3,8 @@
 Gem::Specification.new do |spec|
   spec.name          = "jekyll-dash"
   spec.version       = "1.3.0"
-  spec.authors       = ["Trrbl"]
-  spec.email         = ["trrbl@her.st"]
+  spec.authors       = ["trbl"]
+  spec.email         = ["trbl@her.st"]
 
   spec.summary       = "A dark UI theme for Jekyll, inspired by Dash UI for Atom."
   spec.homepage      = "https://bitbrain.github.io/jekyll-dash"

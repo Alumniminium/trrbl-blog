@@ -3,7 +3,7 @@ layout: post
 title: turning our image hosting service into a cdn
 slug: turning our image hosting service into a cdn
 tags: cdn project netcore csharp web
-author: Trrbl
+author: trbl
 excerpt: now we will turn our tiny image hosting service into a more useful content delivery server. Serving other static content, like JavaScript, CSS and Fonts for our blog will give us the opportunity to easily migrate to another primary host, save diskspace and bandwidth and allow us to scale.
 permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/407aa375-23ab-42d8-bc50-29c41d186567.webp

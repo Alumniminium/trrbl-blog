@@ -3,7 +3,7 @@ layout: post
 title: networking basics #1
 slug: networking-basics-1
 tags: networking linux
-author: Trrbl
+author: trbl
 excerpt: 
 permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/0353a08e-581c-482e-a439-dbf3c42e788c.webp

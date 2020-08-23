@@ -3,7 +3,7 @@ layout: post
 title: transcoding service for whyp.it
 slug: is-your-transgender-running
 tags: csharp linux cli netcore ffmpeg
-author: Trrbl
+author: trbl
 excerpt: Hey, can you build a audio transcoder and waveform generator for this website idea I had? Sure, what could go wrong...
 permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/06ac3787-a8f0-49fc-9dcd-67a857391c04.webp

@@ -1,5 +1,5 @@
 workbox.core.setCacheNameDetails({
-    prefix: "trrbl",
+    prefix: "trbl",
     suffix: "v2",
     precache: "precache",
     runtime: "runtime-cache"

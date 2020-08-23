@@ -3,7 +3,7 @@ layout: post
 title: ssh is power
 slug: ssh-is-power
 tags: linux cli server
-author: Trrbl
+author: trbl
 excerpt: ssh can do far more than just connect you to a remote shell. far. more.
 permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/00976e4a-27cc-4a29-8f1d-5053ac22d054.webp

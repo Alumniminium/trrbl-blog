@@ -3,7 +3,7 @@ layout: post
 title: unlimited free proxies
 slug: unlimited-free-proxies
 tags: csharp netcore pastebin proxy proxies
-author: Trrbl
+author: trbl
 excerpt: pastebins + proxy tester = unlimited free proxies. Let's write everything we need and build a database of working proxies. Starting with a simple C# console app that checks if a proxy is working.
 permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/proxy1.webp
