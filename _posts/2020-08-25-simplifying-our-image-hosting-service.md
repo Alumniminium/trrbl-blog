@@ -6,8 +6,8 @@ tags: tutorial project bash netcore web
 author: trbl
 excerpt: C# is great and all, but not required if you learn how to use the tools linux comes with. Let's remove all of that shit.
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/1598211752.png
-thumbnail: https://cdn.her.st/images/1598211752.png
+image: https://cdn.her.st/images/simplifyingimagehostservice.jpg
+thumbnail: https://cdn.her.st/images/simplifyingimagehostservice-small.jpg
 size: 13.78k
 ---
 
