@@ -4,7 +4,7 @@ title:  "the birth of a programmer"
 slug: "birth of a programmer"
 author: trbl
 excerpt: How did I become a programmer? Well, it all started about 12 years ago, when a series of coincidences would change my life forever. Let me tell you a story...
-tags: personal story programming life
+tags: programming life
 permalink: /usr/bin/:slug.html
 image: https://cdn.her.st/images/de3f063d-962f-4426-bb85-5aa6c48497cf.webp
 thumbnail: https://cdn.her.st/images/b039d012-785f-4a90-939d-1120759e77c7.webp

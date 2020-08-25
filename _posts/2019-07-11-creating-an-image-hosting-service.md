@@ -2,7 +2,7 @@
 layout: post
 title:  "creating an image hosting web service"
 slug: "creating image hosting web service in csharp"
-tags: tutorial project csharp net core netcore web
+tags: netcore web linux
 author: trbl
 excerpt: this blog needs images. let's build an image hosting service and an app to upload them.
 permalink: /usr/bin/:slug.html

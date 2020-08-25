@@ -2,7 +2,7 @@
 layout: post
 title:  "simplifying our image hosting service"
 slug: "simplifying our image hosting service without csharp"
-tags: tutorial project bash netcore web
+tags: bash netcore web linux ssh
 author: trbl
 excerpt: C# is great and all, but not required if you learn how to use the tools linux comes with. Let's remove all of that shit.
 permalink: /usr/bin/:slug.html
