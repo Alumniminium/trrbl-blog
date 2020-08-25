@@ -35,6 +35,8 @@ Let's also change the domain from *h.img.alumni.re* to *cdn.her.st* as I'm not g
 We're going to use *threaded async IO* and *sendfile* for maximum throughput on potentially big files like binary data, audio and video but not for small things like images and assets (which are mostly css and js text files). There's some added latency involved when using threaded async IO so its only worth paying that overhead if the file tansfer will usually take more than a couple seconds. We really don't want to add any additional latency to image requests as that would unnecessarily slow down page loading speed.
 
 ```/etc/nginx/sites-enabled/default```
+
+
 ```json
 server {
 	listen 80;
