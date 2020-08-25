@@ -93,15 +93,6 @@ imgup /path/to/image.jpg [Optional remote filename]
 
 Much better than the C# clusterfuck with multiple classes.
 
-# shift + printscreen
-
-First things first though, here's how I'll use this application:
-
-```bash
-Print + shift
-        maim -s ~/upload.png; cwebp ~/upload.png -o ~/upload.webp; imgup ~/upload.webp && play ~/.config/.ding.wav && trash ~/upload.webp && ~/upload.png
-```
-
 # we did it again! :D
 
 The first iteration brought down complexity and increased performance! Can't ask for a better outcome considering how little effort this took. 
