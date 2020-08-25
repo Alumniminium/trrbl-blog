@@ -102,7 +102,7 @@ Print + shift
         maim -s ~/upload.png; cwebp ~/upload.png -o ~/upload.webp; imgup ~/upload.webp && play ~/.config/.ding.wav && trash ~/upload.webp && ~/upload.png
 ```
 
-# we did it again! :D2
+# we did it again! :D
 
 The first iteration brought down complexity and increased performance! Can't ask for a better outcome considering how little effort this took. 
 
