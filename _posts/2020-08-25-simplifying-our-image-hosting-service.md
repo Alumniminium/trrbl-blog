@@ -42,28 +42,28 @@ server {
 	index index.html;
 	server_name cdn.her.st;
 
-	location / {
-		try_files	$uri $uri/ =404;	
-	} 
+    location / {
+    	try_files	$uri $uri/ =404;	
+    } 
     location /bin {
-		sendfile	on;
-		aio		threads;
-		try_files	$uri $uri/ =404;	
-	}
+    	sendfile	on;
+    	aio		threads;
+    	try_files	$uri $uri/ =404;	
+    }
     location /videos {
-		sendfile	on;
-		aio		threads;
-		try_files	$uri $uri/ =404;	
-	}
+    	sendfile	on;
+    	aio		threads;
+    	try_files	$uri $uri/ =404;	
+    }
     location /audio {
-		sendfile	on;
-		aio		threads;
-		try_files	$uri $uri/ =404;	
-	}
+    	sendfile	on;
+    	aio		threads;
+    	try_files	$uri $uri/ =404;	
+    }
     location /assets {
-		sendfile	on;
-		try_files	$uri $uri/ =404;	
-	}
+    	sendfile	on;
+    	try_files	$uri $uri/ =404;	
+    }
 }
 ```
 Now let's spin up the service and we're done!
@@ -71,10 +71,6 @@ Now let's spin up the service and we're done!
 ```sh
 systemctl enable nginx --now
 ```
-
-## $ setting up Certbot for free SSL
-
-*basically the same as before, just for nginx*
 
 ## $ porting ImgUp to bash
 
@@ -105,12 +101,6 @@ First things first though, here's how I'll use this application:
 Print + shift
         maim -s ~/upload.png; cwebp ~/upload.png -o ~/upload.webp; imgup ~/upload.webp && play ~/.config/.ding.wav && trash ~/upload.webp && ~/upload.png
 ```
-
-`maim` is a screenshot utility and gives you a selection rectangle you can place with your mouse, then save it to my home directory as `upload.png`, run `cwebp` a command line webp converter, saving it as `upload.webp` next to the source file, invoking our app, I've called it `ImgUp`  passing it the `upload.webp` path, then after it finishes uploading, I play a ding sound and delete the files from my home directory. 
-
-The URL to the image is now in my clipboard and I can CTRL+V it here 
-<img src="https://cdn.her.st/images/b79eebcd-cdcf-410e-ac0b-067465831887.webp" width="100%" />
-
 
 # we did it again! :D2
 
