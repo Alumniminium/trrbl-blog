@@ -29,7 +29,7 @@ Micro plans also **share the same CPU Cores.** You have **no dedicated CPU time*
 | RAM   	|  256MB  	|  512MB  	|  768MB  	|
 | SSD   	|   2GB   	|   4GB   	|   6GB  	|
 | IPs   	|   NAT   	|   NAT   	|   NAT   	|
-| Monthly   |   2$  	|  2.5$  	|    3$   	|
+| Monthly   |   2$  	|  3$  	|    4$   	|
 
 # basic plans
 Basic plans are where things get interesting: You get **dedicated CPU Cores** and **your very own IP** address! Enjoy.
