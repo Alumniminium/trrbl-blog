@@ -65,8 +65,7 @@ Link Speed is 1gbit. Traffic is fair use (i consider 750gb/week fair)
 1. Join discord and message me (trbl)
 2. Either subscribe using the button below or manually pay every month.
 
-<div  style="display: flex; justify-content: center"> <iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe></div>
-<div style="display: flex; justify-content: center" class="paypal">
+<div  style="display: flex; justify-content: space-evenly;"> <iframe src="https://discordapp.com/widget?id=599543436865044513&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0" sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
 <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">
 <input type="hidden" name="cmd" value="_s-xclick">
 <input type="hidden" name="hosted_button_id" value="437BZV8CNDPZL">
