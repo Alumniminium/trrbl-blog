@@ -1,10 +1,15 @@
 .title {
   margin: 1rem;
 }
-
 .site-header {
+  
   position: relative;
 
+  .wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
   .cursor {
     position: relative;
   }
