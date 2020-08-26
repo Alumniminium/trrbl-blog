@@ -131,7 +131,9 @@ blockquote {
     margin-bottom: 0;
   }
 }
-
+.hljs-params, .hljs-selector-class, .hljs-strong, .hljs-selector-tag, .hljs-selector-id, .hljs-template-tag, .hljs-section, .hljs-keyword {
+  font-weight: normal;
+}
 pre,
 code {
   @include relative-font-size(0.85);
