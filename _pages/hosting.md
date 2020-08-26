@@ -16,6 +16,8 @@ Total downtime since 01/01/2019: **05h21m47sec** (>99.9% Uptime)
 * 11/05/2020: Nameserver - **0h09m43sec** - Mainenance work, *.her.st domains didn't resolve during that time, everything else was fine
 * 01/07/2020: EVERYTHING - **5h12m04sec** - Power surge, entire Rack in the DC went offline, our PSU didn't survive and got replaced.
 
+**not shown: downtimes caused due to host node reboots (updates) that took less than 3min, two per quarter**
+
 
 # micro plans
 Micro plans **share the same public IP** so you will only have **access to a random port range**, if you would like certain ports to be available to you, please tell me before ordering and I'll check if they're available.
