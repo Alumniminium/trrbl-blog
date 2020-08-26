@@ -18,7 +18,7 @@ Total downtime since 01/01/2019: **05h21m47sec** (>99.9% Uptime)
 
 **Additional downtimes not explicitly stated / not included in the total downtime:**
 
-Two quarterly node reboots for updates, taking less than 3minutes each.
+Two quarterly node reboots for updates, taking less than 3 minutes each.
 
 
 # micro plans
