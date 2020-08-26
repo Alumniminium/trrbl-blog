@@ -132,7 +132,7 @@ blockquote {
   }
 }
 .hljs-params, .hljs-selector-class, .hljs-strong, .hljs-selector-tag, .hljs-selector-id, .hljs-template-tag, .hljs-section, .hljs-keyword {
-  font-weight: normal;
+  font-weight: normal !important;
 }
 pre,
 code {
