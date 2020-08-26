@@ -12,7 +12,7 @@ permalink: /hosting/
 * This hosting service is run as a hobby project not as a business
 * There's no Uptime guarantee or SLA 
 
-Total downtime since 01/01/2019: **05h11m47sec** as of 26/08/2020
+Total downtime since 01/01/2019: **05h21m47sec** as of 26/08/2020
 
 ## Last downtimes
 * 11/05/2020: Nameserver - **0h09m43sec** - Mainenance work, *.her.st domains didn't resolve during that time, everything else was fine
