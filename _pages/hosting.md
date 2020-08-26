@@ -13,7 +13,7 @@ permalink: /hosting/
 Total downtime since 01/01/2019: **05h21m47sec** (>99.9% Uptime)
 
 ## Last downtimes
-* 11/05/2020: Nameserver - **0h09m43sec** - Mainenance work, *.her.st domains didn't resolve during that time, everything else was fine
+* 11/05/2020: Nameserver - **0h09m43sec** - Maintenance work, *.her.st domains didn't resolve during that time, everything else was fine
 * 01/07/2020: EVERYTHING - **5h12m04sec** - Power surge, entire Rack in the DC went offline, our PSU didn't survive and got replaced.
 
 **Additional downtimes not explicitly stated / not included in the total downtime:**
