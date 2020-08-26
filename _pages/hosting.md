@@ -4,8 +4,22 @@ title:  "Fast Affordable Hosting"
 author: A Terrible Programmer
 permalink: /hosting/
 ---
+# her.st hosting
 
-# Micro Plans
+* Everything is fully KVM virtualized. 
+* There's no overselling on physical resources. 
+* Micro plans are sharing the same core and are only in stock until average load hits 25%. 
+* This hosting service is run as a hobby project not as a business
+* There's no Uptime guarantee or SLA 
+
+Total downtime since 01/01/2019: *05h11m47sec* as of 26/08/2020
+
+## Last downtimes
+* 07/01/2020: EVERYTHING - *5h12m04sec* - Power surge, entire Rack in the DC went offline, our PSU didn't survive and got replaced.
+* 05/11/2020: Nameserver - *0h09m43sec* - Mainenance work, *.her.st domains didn't resolve during that time, everything else was fine
+
+
+# micro plans
 Micro plans **share the same public IP** so you will only have **access to a random port range**, if you would like certain ports to be available to you, please tell me before ordering and I'll check if they're available.
 Micro plans also **share the same CPU Cores.** You have **no dedicated CPU time** on those plans, so if half of the other clients decide to run an expensive script at 3pm, you will notice a slowdown at 3pm. That being said, at this point in time, even those plans are **faster than what other providers offer** on their completely oversold servers.
 
@@ -15,9 +29,9 @@ Micro plans also **share the same CPU Cores.** You have **no dedicated CPU time*
 | RAM   	|  256MB  	|  512MB  	|  768MB  	|
 | SSD   	|   2GB   	|   4GB   	|   6GB  	|
 | IPs   	|   NAT   	|   NAT   	|   NAT   	|
-| Monthly   |   1$  	|  1.5$  	|    2$   	|
+| Monthly   |   2$  	|  2.5$  	|    3$   	|
 
-# Basic Plans
+# basic plans
 Basic plans are where things get interesting: You get **dedicated CPU Cores** and **your very own IP** address! Enjoy.
 
 |              | Basic S         | Basic M       |  Basic L       | 
@@ -28,7 +42,7 @@ Basic plans are where things get interesting: You get **dedicated CPU Cores** an
 |IPs | 1 | 1  |1|
 |Monthly $ | 5$ | 7.50$  | 10$| 
 
-# Pro Plans
+# pro plans
 Do you really need this kind of power?
 
 | | Pro S        | Pro M |
@@ -37,23 +51,7 @@ Do you really need this kind of power?
 |RAM| 4 GB | 8 GB | 
 |SSD | 30 GB | 60 GB | 
 |IPs | 1 | 1  |
-|Monthly $ | 15$ | 30$  |
-
-# Custom Plans
-
-
-| | Amount        | Monthly $ | Notes |
-|:-------------| :-------------: |:-------------:| :-------------:| 
-|CPU | per core | $2.25 | shared CPU core is free|
-|RAM| per 128 MB | $0.80 | |
-|SSD | per 1 GB | $0.20 | |
-|IPs | 0-1 | $0 - $3  | shared IP through NAT is free |
-
-
-
-# Special Plans
-
-My Homeserver can provide some NAT hosting too, with a GPU and TB's of HDD storage. Ask me about it :)
+|Monthly $ | 15$ | out of stock  |
 
 # How do I order?!
 1. Join discord and message me (trbl)
