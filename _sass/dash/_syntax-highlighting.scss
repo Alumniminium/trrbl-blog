@@ -1,7 +1,6 @@
 .highlight {
   font-family: $syntax-font-family;
   line-height: $syntax-line-height;
-  font-weight: 600;
 .syntax .hll { background-color: #171738 }
 .syntax  { background: #171738; color: #e7e9db }
 .syntax .c { color: #776e71 } /* Comment */
@@ -67,11 +66,4 @@
 .syntax .vg { color: #ef6155 } /* Name.Variable.Global */
 .syntax .vi { color: #ef6155 } /* Name.Variable.Instance */
 .syntax .il { color: #f99b15 } /* Literal.Number.Integer.Long */
-}
-
-@media only screen and (max-width: 1200px) {
-  .highlight {
-    /*     width: 100vw;
-    margin-left: calc(-50vw + 50%); */
-  }
 }
