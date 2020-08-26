@@ -16,7 +16,7 @@ Total downtime since 01/01/2019: **05h21m47sec** (>99.9% Uptime)
 * 11/05/2020: Nameserver - **0h09m43sec** - Mainenance work, *.her.st domains didn't resolve during that time, everything else was fine
 * 01/07/2020: EVERYTHING - **5h12m04sec** - Power surge, entire Rack in the DC went offline, our PSU didn't survive and got replaced.
 
-**not shown: downtimes caused due to host node reboots (updates) that took less than 3min, two per quarter**
+**not shown: downtimes caused due to host node reboots (updates) that took less than 3min, two per quarter, announced ahead of time**
 
 
 # micro plans
