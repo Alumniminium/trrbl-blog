@@ -2,15 +2,10 @@
   margin: 1rem;
 }
 .site-header {
-  
-  position: relative;
-
   .wrapper {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
     .call-to-action {
        font-weight: bold;
+       float:right;
     }
   }
   .cursor {
