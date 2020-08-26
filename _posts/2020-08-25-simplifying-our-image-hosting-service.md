@@ -37,10 +37,10 @@ We're going to use *threaded async IO* and *sendfile* for maximum throughput on 
 */etc/nginx/sites-enabled/default*
 ```json
 server {
-	listen 80;
-	root /srv/http/cdn.her.st;
-	index index.html;
-	server_name cdn.her.st;
+    listen 80;
+    root /srv/http/cdn.her.st;
+    index index.html;
+    server_name cdn.her.st;
 
     location / {
     	try_files	$uri $uri/ =404;	
