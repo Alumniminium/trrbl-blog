@@ -9,6 +9,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    .call-to-action {
+       border-radius: 5px;
+       border: 1px solid white;
+       padding: 5px 10px;
+       font-weight: bold;
+    }
   }
   .cursor {
     position: relative;
