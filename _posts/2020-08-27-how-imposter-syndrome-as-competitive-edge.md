@@ -56,7 +56,7 @@ I got quite good at this point. I was more than comfortable writing code, I even
 
 I'd get great results, everything would be fast enough, use weird memory optimizations like packing things in BitArrays, stackalloc, pointers, threads,.. and my code would look absolutely horrible everytime i got half way through to completion... I always felt like a scam again. I mean afterall, if I hated my code and could see 100 things that are wrong, im sure they could see 500 things that are wrong with it. I was too afraid to post anything anymore because I couldn't take the shame.
 
-## the revelation
+# the revelation
 
 One of my idols had sold me his code and even after all my pestering, still talked to me and occasionally even answered some questions (though I'll never forget his default response to 90% of my questions: "I forget D:"). He was a couple years older than me and had a job as a programmer when I sent him my latest server I had written from scratch. It was the first time he said "its not bad".
 
@@ -64,10 +64,7 @@ One of my idols had sold me his code and even after all my pestering, still talk
 
 I said that one day I'll become a professional software developer too and get a job in the industry and that I'll keep learning until I'm useful and try to get into uni for a computer science degree.
 
-___
-
-
-He laughed and told me that I'm clearly better than most of his colegues. 
+## He laughed and told me that I'm clearly better than most of his colegues. 
 
 Telling me that some computer science graduates struggle with reversing an array and most juniors need someone to hold their hand just to write code that works - let alone efficiently or beautifully.
 
@@ -75,4 +72,8 @@ He said that almost all code is shit code, that his code is shit code in his eye
 
 He said as soon as you become complacent you stagnate and become a fraud.
 
-Know what you can do, know what you can't and be honest about both.
+## today
+
+I'm convinced, Imposter-syndrom is just as bad as pride. Good servants but bad masters. The key is to find balance. Know what you can do, know what you can't and be honest about both.
+
+["If you are to truly understand, then you will need the contrast, not adherence to a single idea." - Kreia](https://youtu.be/C4R4cEY1_Hg)
