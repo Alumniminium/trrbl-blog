@@ -64,12 +64,12 @@ One of my idols had sold me his code and even after all my pestering, still talk
 
 I said that one day I'll become a professional software developer too and get a job in the industry and that I'll keep learning until I'm useful and try to get into uni for a computer science degree.
 
-____
-____
-____
-___
-___
-___
+#
+#
+#
+#
+#
+#
 
 He laughed and told me that I'm clearly better than most of his colegues. 
 
