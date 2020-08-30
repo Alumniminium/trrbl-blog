@@ -20,9 +20,9 @@ dash:
   date_format: "%b %-d, %Y"
   social_links:
     - url: https://github.com/Alumniminium
-      icon: https://cdn.her.st/assets/github.svg
+      icon: https://https://cdn.her.st/images/blog/github.svg
     - url: /hosting/
-      icon: https://cdn.her.st/assets/server.svg
+      icon: https://https://cdn.her.st/images/blog/server.svg
 
 pwa:
   sw_src_filepath: service-worker.min.js # Optional
