@@ -6,8 +6,8 @@ tags: bash netcore web linux ssh
 author: trbl
 excerpt: C# is great and all, but not required if you learn how to use the tools linux comes with. Let's remove all of that shit.
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/simplifyingimagehostservice.jpg
-thumbnail: https://cdn.her.st/images/simplifyingimagehostservice-small.jpg
+image: https://cdn.her.st/images/blog/simplifyingimagehostservice.jpg
+thumbnail: https://cdn.her.st/images/blog/simplifyingimagehostservice-small.jpg
 size: 13.78k
 ---
 
@@ -83,8 +83,8 @@ if [ -z $filename ]; then
 fi
 
 scp -q $path trbl@cdn.her.st:/srv/http/cdn.her.st/images/$filename
-echo "https://cdn.her.st/images/$filename" | xclip -sel clip
-echo "https://cdn.her.st/images/$filename (added to clipboard)"
+echo "https://cdn.her.st/images/blog/$filename" | xclip -sel clip
+echo "https://cdn.her.st/images/blog/$filename (added to clipboard)"
 ```
 usage:
 ```

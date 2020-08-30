@@ -6,8 +6,8 @@ tags: netcore web linux
 author: trbl
 excerpt: this blog needs images. let's build an image hosting service and an app to upload them.
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/9d17f4a4-16cf-4815-b711-694f67b3e882.webp
-thumbnail: https://cdn.her.st/images/8a6b499b-c703-4e31-8c9f-ac3d468966ca.webp
+image: https://cdn.her.st/images/blog/9d17f4a4-16cf-4815-b711-694f67b3e882.webp
+thumbnail: https://cdn.her.st/images/blog/8a6b499b-c703-4e31-8c9f-ac3d468966ca.webp
 size: 13.78k
 ---
 
@@ -220,7 +220,7 @@ public static class Uploader
     // First we will set our root address for the following requests
     private const string FTP_IMG_ROOT = "ftp://cdn.her.st/images/";
     // Next we set our Id file's public HTTP url, we will download this and parse it to set the current Id.
-    private const string HTTP_IMG_ID_FILE = "https://cdn.her.st/images/Id.txt";
+    private const string HTTP_IMG_ID_FILE = "https://cdn.her.st/images/blog/Id.txt";
     // We use the curId as something like a counter, so we don't overwrite old files. I decided to do this on the client since *I'm* the only client.
     // Don't be an idiot.
     private static int nextId;
@@ -367,5 +367,5 @@ Print + shift
 `maim` is a screenshot utility and gives you a selection rectangle you can place with your mouse, then save it to my home directory as `upload.png`, run `cwebp` a command line webp converter, saving it as `upload.webp` next to the source file, invoking our app, I've called it `ImgUp`  passing it the `upload.webp` path, then after it finishes uploading, I play a ding sound and delete the files from my home directory. 
 
 The URL to the image is now in my clipboard and I can CTRL+V it here 
-<img src="https://cdn.her.st/images/b79eebcd-cdcf-410e-ac0b-067465831887.webp" width="100%" />
+<img src="https://cdn.her.st/images/blog/b79eebcd-cdcf-410e-ac0b-067465831887.webp" width="100%" />
 

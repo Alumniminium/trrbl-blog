@@ -6,8 +6,8 @@ tags: netcore pastebin proxy proxies
 author: trbl
 excerpt: pastebins + proxy tester = unlimited free proxies. Let's write everything we need and build a database of working proxies. Starting with a simple C# console app that checks if a proxy is working.
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/proxy1.webp
-thumbnail: https://cdn.her.st/images/4d67443d-dd90-4a17-8db4-77331c144e24.webp
+image: https://cdn.her.st/images/blog/proxy1.webp
+thumbnail: https://cdn.her.st/images/blog/4d67443d-dd90-4a17-8db4-77331c144e24.webp
 image-credits: this isn't sketchy... we're just organizing unorganized public lists into a database...
 audio: https://cdn.her.st/blockstorage/audio/4ba2caf2-2f47-4588-a77d-236c975efd2e.mp3
 size: 7.71k
@@ -18,12 +18,12 @@ size: 7.71k
 With the shit that's going down in Hong Kong, Iran and dozens of other places around the world, VPN's and Proxies are in high demand. Wouldn't it be great if we had a free unlimited supply of web proxies? Googling around for some free ones, I mostly found sketchy websites with sketchy paid plans, and a couple pastebin links with massive lists of IP's and ports... 
 
 ...massive lists with IP's and ports...
-<center> <img class="lazyload" data-src="https://cdn.her.st/images/i.png" alt="hmm"> </center>
+<center> <img class="lazyload" data-src="https://cdn.her.st/images/blog/i.png" alt="hmm"> </center>
 
 But before we even try to automatically search pastebin for new proxy lists, we have to make sure that we can test proxies in the first place; Thankfully, .net comes with [full proxy support](https://docs.microsoft.com/en-us/dotnet/framework/network-programming/how-to-enable-a-webrequest-to-use-a-proxy-to-communicate-with-the-internet) and you can use it in a single line!
 
 I've made one and put it on github, I call it [SockPuppet](https://github.com/Alumniminium/SockPuppet) because it tests SOCKS web proxies.
-<center><img class="lazyload" data-src="https://cdn.her.st/images/badum.webp" alt="badum tss"></center>
+<center><img class="lazyload" data-src="https://cdn.her.st/images/blog/badum.webp" alt="badum tss"></center>
 
 ## arch
 My version is a simple Producer-Consumer setup that only keeps twice as many proxies in memory as it has worker threads, in case the lists get really big after running the scraper for a few weeks or months. I've annotated the code and encourage you to quickly read over it. 

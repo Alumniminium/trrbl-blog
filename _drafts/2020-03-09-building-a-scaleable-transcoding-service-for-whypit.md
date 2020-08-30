@@ -6,8 +6,8 @@ tags: csharp linux cli netcore ffmpeg
 author: trbl
 excerpt: Hey, can you build a audio transcoder and waveform generator for this website idea I had? Sure, what could go wrong...
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/06ac3787-a8f0-49fc-9dcd-67a857391c04.webp
-thumbnail: https://cdn.her.st/images/e788d86e-f110-440c-8a9b-e03c714ea40a.webp
+image: https://cdn.her.st/images/blog/06ac3787-a8f0-49fc-9dcd-67a857391c04.webp
+thumbnail: https://cdn.her.st/images/blog/e788d86e-f110-440c-8a9b-e03c714ea40a.webp
 image-credits: Landing page https://whyp.it
 size: 3.9k
 ---
@@ -18,7 +18,7 @@ size: 3.9k
 
 A year earlier, he was working on the first prototype, it worked, but there was no transcoding, people could only upload mp3's and the player had to download the entire file before showing the waveform.
 <center>
-<img class="lazyload" data-src="https://cdn.her.st/images/1e7a63d1-36bd-47ed-8086-d9c919ac9e50.webp" alt="screenshot from old version">
+<img class="lazyload" data-src="https://cdn.her.st/images/blog/1e7a63d1-36bd-47ed-8086-d9c919ac9e50.webp" alt="screenshot from old version">
 </center>
 My brain went off trying to work out how to solve the transcoding problem and I offered to build a transcoding service he could use right away. New problems are always fun, this sounded like a great project.
 
@@ -26,7 +26,7 @@ My brain went off trying to work out how to solve the transcoding problem and I 
 
 This time he'd build his own player while use a new tech stack ([VueJS/Nuxt](https://nuxtjs.org/)). He was serious and passionate about this project. He knew he couldn't transcode the files on the webserver using PHP or Node as that wouldn't scale, that much was obvious but the solution wasn't.
 <center>
-<img class="lazyload" data-src="https://cdn.her.st/images/647ced08-cf20-4db7-bbf6-24b47ea340b4.webp" alt="how it all begun discord chat screenshot">
+<img class="lazyload" data-src="https://cdn.her.st/images/blog/647ced08-cf20-4db7-bbf6-24b47ea340b4.webp" alt="how it all begun discord chat screenshot">
 </center>
 
 ## NAudio + TCP
@@ -46,13 +46,13 @@ For a couple minutes I've even considered going with the full .net framework in 
 After a couple of seconds, I realized that I'm playing audio and video just fine on my linux laptop, and that there was [ffmpeg](). Using ffmpeg to transcode the files would be perfect as it supports every format known to man and is designed in a way it can be automated easily. Architecture of the transcoder would now become a bit more complicated so I spent a couple of minutes on that problem. I decided to ask Braed about how to communicate with the backend first as he didn't seem too excited about TCP. We decided on a shared Queue, where he would submit work to and I'd dequeue, process and enqueue in another queue. We didn't know how to share that queue though, so I googled [mysql as a worker queue]() and got 
 
 <center>
-<img class="lazyload" data-src="https://cdn.her.st/images/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
+<img class="lazyload" data-src="https://cdn.her.st/images/blog/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
 </center>
 
 
 
 <center>
-<img class="lazyload" data-src="https://cdn.her.st/images/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
+<img class="lazyload" data-src="https://cdn.her.st/images/blog/2043b311-5c72-4be1-b3d6-32f346d6d3b3.webp" alt="screenshot of the UI (March 12th, 2020)">
 </center>
 
 

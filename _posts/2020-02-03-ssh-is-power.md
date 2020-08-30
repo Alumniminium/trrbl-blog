@@ -6,8 +6,8 @@ tags: linux ssh
 author: trbl
 excerpt: ssh can do far more than just connect you to a remote shell. far. more.
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/00976e4a-27cc-4a29-8f1d-5053ac22d054.webp
-thumbnail: https://cdn.her.st/images/d89b3334-0f01-4ee5-90d7-48358c28e325.webp
+image: https://cdn.her.st/images/blog/00976e4a-27cc-4a29-8f1d-5053ac22d054.webp
+thumbnail: https://cdn.her.st/images/blog/d89b3334-0f01-4ee5-90d7-48358c28e325.webp
 image-credits: image from @ https://linuxize.com/
 size: 3.13k
 

@@ -6,8 +6,8 @@ tags: personal
 author: trbl
 excerpt: what if I told you that imposter-syndrome actually gives you a competitive edge in the first couple of years?
 permalink: /usr/bin/:slug.html
-image: https://cdn.her.st/images/morpheus.webp
-thumbnail: https://cdn.her.st/images/morpheus.webp
+image: https://cdn.her.st/images/blog/morpheus.webp
+thumbnail: https://cdn.her.st/images/blog/morpheus.webp
 ---
 
 # my aquired imposter-syndrome
@@ -44,7 +44,7 @@ I took a break from the private server scene and bought a book on C#, read it, d
 
 So I started writing my own. I'd have two, three somtimes four reference projects open in visual studio, initially copying alot of parts without modifying them in any meaningful way, primarily the cryptographer, the packets, the packet parsers, and the calculations and dicerolls. After 5 months I had something that was almost playable. You could login, kill monsters, get experience, use skills, talk to npcs,.. all of the basic stuff worked - more or less. Surely now they couldn't call me a leech anymore, right?  "Half of the code is leeched and the other half is even worse"
 
-<center> <img class="lazyload" data-src="https://cdn.her.st/images/pride.gif" alt="pride"> </center>
+<center> <img class="lazyload" data-src="https://cdn.her.st/images/blog/pride.gif" alt="pride"> </center>
 
 I'd never get a job if i didnt start learning how to write proper code. If I want to turn my passion into my job I have to become as good as them. I started pestering the guys i idolized. Please teach me how I can improve, please show me your code so I can learn. No fuck off! Please! NO! PLEASE SELL ME YOUR CODE, ILL GIVE U 100$! 100$? Hahaha I spent months on this code its worth at least 300$! OK ILL GIVE YOU 300$! 
 
@@ -60,7 +60,7 @@ I'd get great results, everything would be fast enough, use weird memory optimiz
 
 One of my idols had sold me his code and even after all my pestering, still talked to me and occasionally even answered some questions (though I'll never forget his default response to 90% of my questions: "I forget D:"). He was a couple years older than me and had a job as a programmer when I sent him my latest server I had written from scratch. It was the first time he said "its not bad".
 
-<center> <img class="lazyload" data-src="https://cdn.her.st/images/happy.webp" alt="happy"> </center>
+<center> <img class="lazyload" data-src="https://cdn.her.st/images/blog/happy.webp" alt="happy"> </center>
 
 I said that one day I'll become a professional software developer too and get a job in the industry and that I'll keep learning until I'm useful and try to get into uni for a computer science degree.
 
