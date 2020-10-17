@@ -14,6 +14,9 @@ tag_permalink_style: pretty
 tag_page_layout: tag_page
 tag_page_dir: tag
 
+feed:
+  path: rss.xml
+
 sass:
   style: compressed
 dash:
@@ -38,7 +41,6 @@ pwa:
     - mainfest.json
 
 plugins:
- - jekyll-feed
  - jekyll-seo-tag
  - jekyll-paginate
  - jekyll/tagging
